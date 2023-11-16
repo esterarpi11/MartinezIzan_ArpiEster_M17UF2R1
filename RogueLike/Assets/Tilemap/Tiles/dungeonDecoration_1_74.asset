@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: dungeonDecoration_1_74
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 65505575, guid: d79283eab0ce8494ca6c0f6a89c1e521, type: 3}
+  m_Sprite: {fileID: -1803929911, guid: d79283eab0ce8494ca6c0f6a89c1e521, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
