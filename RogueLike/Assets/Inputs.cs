@@ -17,10 +17,10 @@ using UnityEngine.InputSystem.Utilities;
 
 namespace GameInputs
 {
-    public partial class @GameInputs: IInputActionCollection2, IDisposable
+    public partial class @GameInput: IInputActionCollection2, IDisposable
     {
         public InputActionAsset asset { get; }
-        public @GameInputs()
+        public @GameInput()
         {
             asset = InputActionAsset.FromJson(@"{
     ""name"": ""Controles"",
@@ -29,15 +29,6 @@ namespace GameInputs
             ""name"": ""MainPlayer"",
             ""id"": ""3edc5cab-6bfe-46b5-b2f7-a5e24ab804d0"",
             ""actions"": [
-                {
-                    ""name"": ""Move"",
-                    ""type"": ""Button"",
-                    ""id"": ""f5bf882d-1f96-4d95-bf39-fb9eee09ce52"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
                 {
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
@@ -73,53 +64,18 @@ namespace GameInputs
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""Button"",
+                    ""id"": ""530be06c-653a-4622-bd65-2679dfd7cd7e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""f627b4e0-f1ab-427b-b765-0e86101dc289"",
-                    ""path"": ""<Keyboard>/#(W)"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""81537f80-c4c3-497c-9d97-9f810e7b21fa"",
-                    ""path"": ""<Keyboard>/#(S)"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f27fc72e-c3d9-4e2f-b2cb-5618596a45d5"",
-                    ""path"": ""<Keyboard>/#(A)"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""04380dee-21d9-4f0c-aadd-5518c9a90e82"",
-                    ""path"": ""<Keyboard>/#(D)"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""389997dd-c953-459b-8e0f-9759579d17c5"",
@@ -196,6 +152,72 @@ namespace GameInputs
                     ""action"": ""PickWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Horizontal"",
+                    ""id"": ""e40a4430-a794-474e-9e43-0992db55e971"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""fd86e81a-3a48-4704-8a2a-c626450b2666"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""2dd8c7c7-08d5-4f07-9322-2eddff54ee73"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Vertical"",
+                    ""id"": ""2c8e0857-02be-4ab4-945c-1c9258430e0c"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""35920214-85d5-465a-b8a5-24859f4faf89"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""198e00e0-739a-4b49-9754-da4fe02f48f7"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -204,11 +226,11 @@ namespace GameInputs
 }");
             // MainPlayer
             m_MainPlayer = asset.FindActionMap("MainPlayer", throwIfNotFound: true);
-            m_MainPlayer_Move = m_MainPlayer.FindAction("Move", throwIfNotFound: true);
             m_MainPlayer_Attack = m_MainPlayer.FindAction("Attack", throwIfNotFound: true);
             m_MainPlayer_SwitchWeapon = m_MainPlayer.FindAction("SwitchWeapon", throwIfNotFound: true);
             m_MainPlayer_Chat = m_MainPlayer.FindAction("Chat", throwIfNotFound: true);
             m_MainPlayer_PickWeapon = m_MainPlayer.FindAction("PickWeapon", throwIfNotFound: true);
+            m_MainPlayer_Movement = m_MainPlayer.FindAction("Movement", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -270,20 +292,20 @@ namespace GameInputs
         // MainPlayer
         private readonly InputActionMap m_MainPlayer;
         private List<IMainPlayerActions> m_MainPlayerActionsCallbackInterfaces = new List<IMainPlayerActions>();
-        private readonly InputAction m_MainPlayer_Move;
         private readonly InputAction m_MainPlayer_Attack;
         private readonly InputAction m_MainPlayer_SwitchWeapon;
         private readonly InputAction m_MainPlayer_Chat;
         private readonly InputAction m_MainPlayer_PickWeapon;
+        private readonly InputAction m_MainPlayer_Movement;
         public struct MainPlayerActions
         {
-            private @GameInputs m_Wrapper;
-            public MainPlayerActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Move => m_Wrapper.m_MainPlayer_Move;
+            private @GameInput m_Wrapper;
+            public MainPlayerActions(@GameInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @Attack => m_Wrapper.m_MainPlayer_Attack;
             public InputAction @SwitchWeapon => m_Wrapper.m_MainPlayer_SwitchWeapon;
             public InputAction @Chat => m_Wrapper.m_MainPlayer_Chat;
             public InputAction @PickWeapon => m_Wrapper.m_MainPlayer_PickWeapon;
+            public InputAction @Movement => m_Wrapper.m_MainPlayer_Movement;
             public InputActionMap Get() { return m_Wrapper.m_MainPlayer; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -293,9 +315,6 @@ namespace GameInputs
             {
                 if (instance == null || m_Wrapper.m_MainPlayerActionsCallbackInterfaces.Contains(instance)) return;
                 m_Wrapper.m_MainPlayerActionsCallbackInterfaces.Add(instance);
-                @Move.started += instance.OnMove;
-                @Move.performed += instance.OnMove;
-                @Move.canceled += instance.OnMove;
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
@@ -308,13 +327,13 @@ namespace GameInputs
                 @PickWeapon.started += instance.OnPickWeapon;
                 @PickWeapon.performed += instance.OnPickWeapon;
                 @PickWeapon.canceled += instance.OnPickWeapon;
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
             }
 
             private void UnregisterCallbacks(IMainPlayerActions instance)
             {
-                @Move.started -= instance.OnMove;
-                @Move.performed -= instance.OnMove;
-                @Move.canceled -= instance.OnMove;
                 @Attack.started -= instance.OnAttack;
                 @Attack.performed -= instance.OnAttack;
                 @Attack.canceled -= instance.OnAttack;
@@ -327,6 +346,9 @@ namespace GameInputs
                 @PickWeapon.started -= instance.OnPickWeapon;
                 @PickWeapon.performed -= instance.OnPickWeapon;
                 @PickWeapon.canceled -= instance.OnPickWeapon;
+                @Movement.started -= instance.OnMovement;
+                @Movement.performed -= instance.OnMovement;
+                @Movement.canceled -= instance.OnMovement;
             }
 
             public void RemoveCallbacks(IMainPlayerActions instance)
@@ -346,11 +368,11 @@ namespace GameInputs
         public MainPlayerActions @MainPlayer => new MainPlayerActions(this);
         public interface IMainPlayerActions
         {
-            void OnMove(InputAction.CallbackContext context);
             void OnAttack(InputAction.CallbackContext context);
             void OnSwitchWeapon(InputAction.CallbackContext context);
             void OnChat(InputAction.CallbackContext context);
             void OnPickWeapon(InputAction.CallbackContext context);
+            void OnMovement(InputAction.CallbackContext context);
         }
     }
 }

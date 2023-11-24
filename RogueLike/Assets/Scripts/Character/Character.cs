@@ -1,12 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Character : MoveBehaviour
-{   
-    public Action<Character> action;
+{
+    private void Awake()
+    {
+
+    }
     // Start is called before the first frame update
     void Start()
     {
