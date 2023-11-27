@@ -80,7 +80,7 @@ namespace GameInputs
                     ""name"": """",
                     ""id"": ""389997dd-c953-459b-8e0f-9759579d17c5"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Attack"",
