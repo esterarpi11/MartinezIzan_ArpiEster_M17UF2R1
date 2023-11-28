@@ -67,9 +67,9 @@ namespace GameInputs
                 },
                 {
                     ""name"": ""Movement"",
-                    ""type"": ""Button"",
-                    ""id"": ""530be06c-653a-4622-bd65-2679dfd7cd7e"",
-                    ""expectedControlType"": ""Button"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""a04cb810-3fe2-4386-9672-92e9960568e0"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -88,48 +88,37 @@ namespace GameInputs
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""fad01283-c957-4609-86a2-1c2a31ce0df0"",
-                    ""path"": ""<Keyboard>/#(Q)"",
+                    ""name"": ""Switch"",
+                    ""id"": ""44866532-1f6a-4f4b-9bf7-ebdf972c1504"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchWeapon"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""dcee827e-ed46-463c-a2cd-8accc21c0767"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SwitchWeapon"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""9b89862e-8069-4787-bc32-9800ce4f3227"",
-                    ""path"": ""<Keyboard>/#(E)"",
+                    ""name"": ""positive"",
+                    ""id"": ""cb260b9d-b103-40b3-a940-7daa45f42415"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SwitchWeapon"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""075cb8e9-c18f-43aa-ad40-ab5112686201"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Chat"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6ff62009-0bbe-45ab-b338-daac166f6e25"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Chat"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -143,6 +132,39 @@ namespace GameInputs
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": ""Decide"",
+                    ""id"": ""be3c3bb9-95b2-49b5-a3c4-72dcef36fa79"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Chat"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""76e3e99d-c612-46c5-9ceb-b94a882beebc"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Chat"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""1ea022d0-613a-41bb-bc18-2067e83136af"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Chat"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""79aa2693-ad9d-4adb-b09d-29282ffbfb12"",
                     ""path"": ""<Keyboard>/#(F)"",
@@ -154,9 +176,9 @@ namespace GameInputs
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Horizontal"",
-                    ""id"": ""e40a4430-a794-474e-9e43-0992db55e971"",
-                    ""path"": ""1DAxis"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""a2222e77-2cf5-4fa6-8728-ebf20e2244f1"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -165,41 +187,8 @@ namespace GameInputs
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""fd86e81a-3a48-4704-8a2a-c626450b2666"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""2dd8c7c7-08d5-4f07-9322-2eddff54ee73"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Vertical"",
-                    ""id"": ""2c8e0857-02be-4ab4-945c-1c9258430e0c"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""35920214-85d5-465a-b8a5-24859f4faf89"",
+                    ""name"": ""up"",
+                    ""id"": ""a788f635-b2da-432b-8b2b-e7cf7da7abe7"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -209,9 +198,31 @@ namespace GameInputs
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
-                    ""id"": ""198e00e0-739a-4b49-9754-da4fe02f48f7"",
+                    ""name"": ""down"",
+                    ""id"": ""c85a878c-f0c7-45b3-8a43-225ad229df61"",
                     ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""c1b27a7f-af9f-4782-9ddf-5dd4215dd195"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""8c67d7fb-0a0b-468c-af20-285998588be6"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
