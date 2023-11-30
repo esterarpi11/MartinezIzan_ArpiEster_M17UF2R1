@@ -9,6 +9,7 @@ public class MoveBehaviour : MonoBehaviour
 {
     private GameInput _inputs;
     private Rigidbody2D _rigidbody;
+    private Animator _animator;
     private float _speed= 5f;
 
     private void Awake()
@@ -16,6 +17,7 @@ public class MoveBehaviour : MonoBehaviour
         _inputs = new GameInput();
         _inputs.MainPlayer.Enable();
         _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -37,7 +39,7 @@ public class MoveBehaviour : MonoBehaviour
     }
     private void Move_Performed(InputAction.CallbackContext obj)
     {
-        _rigidbody.velocity = obj.ReadValue<Vector2>() * _speed;       
+        _rigidbody.velocity = obj.ReadValue<Vector2>() * _speed;
     }
 
 }
