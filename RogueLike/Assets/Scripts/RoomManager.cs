@@ -69,6 +69,9 @@ public class RoomManager : MonoBehaviour
         roomGrid[x, y] = 1;
         roomCount++;
 
+        if (roomCount >= maxRooms) return false;
+        if(Random.value <0.5f && roomIndex != Vector2Int.zero) return false;
+
         var newRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
         newRoom.GetComponent<Room>().RoomIndex = roomIndex;
         newRoom.name = $"Room-{roomCount}";
