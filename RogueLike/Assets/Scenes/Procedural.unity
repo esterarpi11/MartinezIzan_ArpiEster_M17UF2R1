@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomPrefab: {fileID: 1271538613468659656, guid: 001c9a928ae85f9498e333a687672404, type: 3}
-  maxRooms: 15
+  maxRooms: 30
   minRooms: 10
 --- !u!4 &126309845
 Transform:

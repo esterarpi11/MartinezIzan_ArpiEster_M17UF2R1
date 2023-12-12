@@ -65,12 +65,15 @@ public class RoomManager : MonoBehaviour
     {
         int x = roomIndex.x;
         int y = roomIndex.y;
+
+        if (roomCount >= maxRooms) return false;
+        if (Random.value <0.5f && roomIndex != Vector2Int.zero) return false;
+        if (CountAdjacentRooms(roomIndex) > 1) return false;
+
         roomQueue.Enqueue(roomIndex);
         roomGrid[x, y] = 1;
         roomCount++;
 
-        if (roomCount >= maxRooms) return false;
-        if(Random.value <0.5f && roomIndex != Vector2Int.zero) return false;
 
         var newRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
         newRoom.GetComponent<Room>().RoomIndex = roomIndex;
@@ -78,6 +81,41 @@ public class RoomManager : MonoBehaviour
         roomObjects.Add(newRoom);
 
         return true;
+    }
+
+    void OpenDoors(GameObject room, int x, int y)
+    {
+        Room newRoomScript = room.GetComponent<Room>();
+
+        // Neighbours
+        Room leftRoomScript = GetRoomScriptAt(new Vector2Int(x - 1, y));
+        Room rightRoomScript = GetRoomScriptAt(new Vector2Int(x + 1, y));
+        Room bottomRoomScript = GetRoomScriptAt(new Vector2Int(x, y - 1));
+        Room topRoomScript = GetRoomScriptAt(new Vector2Int(x, y + 1));
+
+        // Determine which doors to open based on the direction
+        if (x > 0 && roomGrid)
+    }
+
+    Room GetRoomScriptAt(Vector2Int index)
+    {
+        GameObject roomObject = roomObjects.Find(r => r.GetComponent<Room>().RoomIndex == index);
+        if(roomObject != null) return roomObject.GetComponent<Room>();
+        return null;
+    }
+
+    private int CountAdjacentRooms(Vector2Int roomIndex)
+    {
+        int x = roomIndex.x;
+        int y = roomIndex.y;
+        int count = 0;
+
+        if (x > 0 && roomGrid[x - 1, y] != 0) count++; // Left
+        if (x > 0 && roomGrid[x - 1, y] != 0) count++; // Right
+        if (y > 0 && roomGrid[x, y - 1] != 0) count++; // Bottom
+        if (y > 0 && roomGrid[x, y + 1] != 0) count++; // Top
+
+        return count;
     }
 
     private Vector3 GetPositionFromGridIndex(Vector2Int gridIndex)
