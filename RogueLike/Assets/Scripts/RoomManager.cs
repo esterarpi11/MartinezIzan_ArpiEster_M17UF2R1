@@ -41,7 +41,12 @@ public class RoomManager : MonoBehaviour
             TryGenerateRoom(new Vector2Int(gridX + 1, gridY));
             TryGenerateRoom(new Vector2Int(gridX, gridY + 1));
             TryGenerateRoom(new Vector2Int(gridX, gridY - 1));
-        }else if (!generationComplete)
+        }
+        else if (roomCount < minRooms)
+        {
+            RegenerateRooms();
+        }
+        else if (!generationComplete)
         {
             generationComplete = true;
         }
@@ -79,8 +84,29 @@ public class RoomManager : MonoBehaviour
         newRoom.GetComponent<Room>().RoomIndex = roomIndex;
         newRoom.name = $"Room-{roomCount}";
         roomObjects.Add(newRoom);
-
+        OpenDoors(newRoom, x, y);
+        ChooseFloor(newRoom);
         return true;
+    }
+
+    // Clear all rooms and try again
+    private void RegenerateRooms()
+    {
+        roomObjects.ForEach(Destroy);
+        roomObjects.Clear();
+        roomGrid = new int[gridSizeX, gridSizeY];
+        roomQueue.Clear();
+        roomCount = 0;
+        generationComplete = false;
+
+        Vector2Int initialRoomIndex = new Vector2Int(gridSizeX/2, gridSizeY/2);
+        StartRoomGenerationFromRoom(initialRoomIndex);
+    }
+
+    void ChooseFloor(GameObject room)
+    {
+        Room newRoomScript = room.GetComponent<Room>();
+        newRoomScript.ChosenFloor(Random.Range(1, 4));
     }
 
     void OpenDoors(GameObject room, int x, int y)
@@ -94,7 +120,30 @@ public class RoomManager : MonoBehaviour
         Room topRoomScript = GetRoomScriptAt(new Vector2Int(x, y + 1));
 
         // Determine which doors to open based on the direction
-        if (x > 0 && roomGrid)
+        if (x > 0 && roomGrid[ x - 1, y] != 0)
+        {
+            // Neighbouring room to the left
+            newRoomScript.OpenDoor(Vector2Int.left);
+            leftRoomScript.OpenDoor(Vector2Int.right);
+        }
+        if ( x < gridSizeX - 1 && roomGrid[ x + 1, y] != 0)
+        {
+            // Neighbouring room to the right
+            newRoomScript.OpenDoor(Vector2Int.right);
+            rightRoomScript.OpenDoor(Vector2Int.left);
+        }
+        if (y > 0 && roomGrid[x, y - 1] != 0)
+        {
+            // Neighbouring room below
+            newRoomScript.OpenDoor(Vector2Int.down);
+            bottomRoomScript.OpenDoor(Vector2Int.up);
+        }
+        if (y < gridSizeY - 1 && roomGrid[x, y + 1] != 0)
+        {
+            // Neighbouring room above
+            newRoomScript.OpenDoor(Vector2Int.up);
+            topRoomScript.OpenDoor(Vector2Int.down);
+        }
     }
 
     Room GetRoomScriptAt(Vector2Int index)

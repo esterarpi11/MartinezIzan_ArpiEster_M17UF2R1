@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2aeec5409892740a6a22b3ae2a1541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomPrefab: {fileID: 1271538613468659656, guid: 001c9a928ae85f9498e333a687672404, type: 3}
-  maxRooms: 30
+  roomPrefab: {fileID: 4194373646527916478, guid: 2487d7fe65c54de4d959948ad1315fd7, type: 3}
+  maxRooms: 15
   minRooms: 10
 --- !u!4 &126309845
 Transform:
@@ -231,7 +231,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
