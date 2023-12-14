@@ -31,7 +31,18 @@ public class MoveBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        float hor = Input.GetAxisRaw("Horizontal");
+        float ver = Input.GetAxisRaw("Vertical");
+        if (hor != 0 || ver != 0)
+        {
+            _animator.SetFloat("horizontal", hor);
+            _animator.SetFloat("vertical", ver);
+            _animator.SetFloat("speed", 1);
+        }
+        else
+        {
+            _animator.SetFloat("speed", 0);
+        }
     }
     private void Pick_Performed(InputAction.CallbackContext obj)
     {
