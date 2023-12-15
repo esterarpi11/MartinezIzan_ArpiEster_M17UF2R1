@@ -57,9 +57,6 @@ public class Room : MonoBehaviour
             case 3: 
                 decoracion3.SetActive(true); 
                 break;
-            case 4: 
-                decoracion4.SetActive(true); 
-                break;
         }
     }
 }
