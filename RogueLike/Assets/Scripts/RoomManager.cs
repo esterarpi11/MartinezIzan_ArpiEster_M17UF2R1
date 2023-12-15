@@ -46,11 +46,7 @@ public class RoomManager : MonoBehaviour
         {
             RegenerateRooms();
         }
-        else if (!generationComplete)
-        {
-            generationComplete = true;
-        }
-
+        else if (!generationComplete) generationComplete = true;
     }
 
     private void StartRoomGenerationFromRoom(Vector2Int roomIndex)
@@ -78,7 +74,6 @@ public class RoomManager : MonoBehaviour
         roomQueue.Enqueue(roomIndex);
         roomGrid[x, y] = 1;
         roomCount++;
-
 
         var newRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
         newRoom.GetComponent<Room>().RoomIndex = roomIndex;
