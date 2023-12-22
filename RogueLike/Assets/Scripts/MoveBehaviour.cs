@@ -9,7 +9,7 @@ public class MoveBehaviour : MonoBehaviour
 {
     private GameInput _inputs;
     private Rigidbody2D _rigidbody;
-    //private Animator _animator;
+    private Animator _animator;
     private float _speed= 5f;
 
     private void Awake()
@@ -17,7 +17,7 @@ public class MoveBehaviour : MonoBehaviour
         _inputs = new GameInput();
         _inputs.MainPlayer.Enable();
         _rigidbody = GetComponent<Rigidbody2D>();
-        //_animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -29,28 +29,23 @@ public class MoveBehaviour : MonoBehaviour
     }
 
     // Update is called once per frame
-<<<<<<< Updated upstream
+
     void Update()
     {
-        
+        float hor = Input.GetAxisRaw("Horizontal");
+        float ver = Input.GetAxisRaw("Vertical");
+        if (hor != 0 || ver != 0)
+        {
+            _animator.SetFloat("horizontal", hor);
+            _animator.SetFloat("vertical", ver);
+            _animator.SetFloat("speed", 1);
+        }
+        else
+        {
+            _animator.SetFloat("speed", 0);
+        }
     }
-=======
-    //void Update()
-    //{
-    //    float hor = Input.GetAxisRaw("Horizontal");
-    //    float ver = Input.GetAxisRaw("Vertical");
-    //    if (hor != 0 || ver != 0)
-    //    {
-    //        _animator.SetFloat("horizontal", hor);
-    //        _animator.SetFloat("vertical", ver);
-    //        _animator.SetFloat("speed", 1);
-    //    }
-    //    else
-    //    {
-    //        _animator.SetFloat("speed", 0);
-    //    }
-    //}
->>>>>>> Stashed changes
+
     private void Pick_Performed(InputAction.CallbackContext obj)
     {
         Debug.Log("pick");
