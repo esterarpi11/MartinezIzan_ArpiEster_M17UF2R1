@@ -12,14 +12,19 @@ public class Inventario : MonoBehaviour
         instance = this; 
     }
 
-    public int space = 6;
-    public List<Arma> items = new List<Arma> ();
+    public delegate void OnItemChanged();
+    public OnItemChanged onItemChangedCallback;
 
-    public void Add (Arma arma)
-    {
-        if(items.Count < space)
-        {
-            items.Add(arma);
-        }
-    }
+    public int space = 6;
+    //public List<Arma> items = new List<Arma> ();
+
+    //public void Add (Arma arma)
+    //{
+    //    if(items.Count < space)
+    //    {
+    //        items.Add(arma);
+    //    }
+    //    if(onItemChangedCallback != null) onItemChangedCallback.Invoke();
+    //}
+    
 }
