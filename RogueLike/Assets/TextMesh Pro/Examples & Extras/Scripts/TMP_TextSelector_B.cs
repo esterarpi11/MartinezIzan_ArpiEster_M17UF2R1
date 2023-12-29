@@ -41,11 +41,6 @@ namespace TMPro.Examples
 
             m_Canvas = gameObject.GetComponentInParent<Canvas>();
 
-            // Get a reference to the camera if Canvas Render Mode is not ScreenSpace Overlay.
-            if (m_Canvas.renderMode == RenderMode.ScreenSpaceOverlay)
-                m_Camera = null;
-            else
-                m_Camera = m_Canvas.worldCamera;
 
             // Create pop-up text object which is used to show the link information.
             m_TextPopup_RectTransform = Instantiate(TextPopup_Prefab_01) as RectTransform;

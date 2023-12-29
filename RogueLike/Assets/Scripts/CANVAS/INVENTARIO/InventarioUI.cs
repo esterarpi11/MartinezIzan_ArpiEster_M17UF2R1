@@ -2,13 +2,13 @@ using UnityEngine.InputSystem;
 
 public class InventarioUI : CanvasUI
 {
-    Canvas canvas;
+    Inventario inventario;
     InventarioSlot[] slots;
     // Start is called before the first frame update
     void Start()
     {
-        canvas = Canvas.instance;
-        canvas.onItemChangedCallback += UpdateUI;
+        inventario = Inventario.instance;
+        inventario.onItemChangedCallback += UpdateUI;
         _inputs.MainPlayer.Inventario.performed += CanvasActive;
     }
 
@@ -21,9 +21,9 @@ public class InventarioUI : CanvasUI
     {
         for (int i = 0; i < slots.Length; i++)
         {
-            if (i < canvas.items.Count)
+            if (i < inventario.items.Count)
             {
-                slots[i].AddArma(canvas.items[i]);
+                slots[i].AddArma(inventario.items[i]);
             }
         }
     }

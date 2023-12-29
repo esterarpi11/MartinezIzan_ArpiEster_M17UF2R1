@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class Canvas : MonoBehaviour
 {
-    public static Canvas instance;
-
-    private void Awake()
-    {
-        if (instance != null) return;
-        instance = this; 
-    }
-
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
 
