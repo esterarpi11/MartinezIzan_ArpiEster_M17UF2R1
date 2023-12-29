@@ -15,27 +15,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SwitchWeapon",
-                    "type": "Button",
-                    "id": "aa4d257f-b2f2-46bb-8503-05ebbc69de35",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Chat",
                     "type": "Button",
                     "id": "ac07ded3-f037-42c1-a98d-069b3b38f19a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "PickWeapon",
-                    "type": "Button",
-                    "id": "2abf9679-b16f-485f-801b-6bb3429b92c1",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -46,6 +28,15 @@
                     "type": "PassThrough",
                     "id": "a04cb810-3fe2-4386-9672-92e9960568e0",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Inventario",
+                    "type": "Button",
+                    "id": "acfb84d3-8bb6-4aea-b25f-2c4f71a9866c",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -60,94 +51,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "Switch",
-                    "id": "44866532-1f6a-4f4b-9bf7-ebdf972c1504",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchWeapon",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "dcee827e-ed46-463c-a2cd-8accc21c0767",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchWeapon",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "cb260b9d-b103-40b3-a940-7daa45f42415",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchWeapon",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "f2534170-6b5f-4056-aeaa-4529792d1c19",
-                    "path": "<Keyboard>/enter",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Chat",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "Decide",
-                    "id": "be3c3bb9-95b2-49b5-a3c4-72dcef36fa79",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Chat",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "76e3e99d-c612-46c5-9ceb-b94a882beebc",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Chat",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "1ea022d0-613a-41bb-bc18-2067e83136af",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Chat",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "79aa2693-ad9d-4adb-b09d-29282ffbfb12",
-                    "path": "<Keyboard>/#(F)",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PickWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -205,6 +108,28 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "f2534170-6b5f-4056-aeaa-4529792d1c19",
+                    "path": "<Keyboard>/#(E)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Chat",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ab12065d-94eb-46c4-9e74-437fa44f6fbc",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventario",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
