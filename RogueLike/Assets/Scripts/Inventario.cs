@@ -16,15 +16,15 @@ public class Inventario : MonoBehaviour
     public OnItemChanged onItemChangedCallback;
 
     public int space = 6;
-    //public List<Arma> items = new List<Arma> ();
+    public List<Arma> items = new List<Arma>();
 
-    //public void Add (Arma arma)
-    //{
-    //    if(items.Count < space)
-    //    {
-    //        items.Add(arma);
-    //    }
-    //    if(onItemChangedCallback != null) onItemChangedCallback.Invoke();
-    //}
-    
+    public void Add(Arma arma)
+    {
+        if (items.Count < space)
+        {
+            items.Add(arma);
+        }
+        if (onItemChangedCallback != null) onItemChangedCallback.Invoke();
+    }
+
 }
