@@ -23,8 +23,6 @@ public class MoveBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _inputs.MainPlayer.PickWeapon.performed += Pick_Performed;
-
         _inputs.MainPlayer.Movement.performed += Move_Performed;
     }
 
@@ -43,10 +41,6 @@ public class MoveBehaviour : MonoBehaviour
         {
             _animator.SetFloat("speed", 0);
         }
-    }
-    private void Pick_Performed(InputAction.CallbackContext obj)
-    {
-        Debug.Log("pick");
     }
     private void Move_Performed(InputAction.CallbackContext obj)
     {

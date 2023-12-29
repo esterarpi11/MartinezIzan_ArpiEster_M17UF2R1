@@ -7,4 +7,8 @@ public class Arma : ScriptableObject
     public Sprite icon = null;
     public float damage = 0f;
 
+    public virtual void Use()
+    {
+
+    }
 }
