@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class TiendaUI : CanvasUI
 {
+    GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,6 @@ public class TiendaUI : CanvasUI
 
     public override void CanvasActive(InputAction.CallbackContext obj)
     {
-        canvasUI.SetActive(!canvasUI.activeSelf);
+        if(gameManager.openTienda()) canvasUI.SetActive(!canvasUI.activeSelf);
     }
 }
