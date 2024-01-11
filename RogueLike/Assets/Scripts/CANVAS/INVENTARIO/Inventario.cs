@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventario : Canvas
+public class Inventario : MonoBehaviour
 {
+    public delegate void OnItemChanged();
+    public OnItemChanged onItemChangedCallback;
+
+    public int space = 6;
     public static Inventario instance;
 
     private void Awake()
