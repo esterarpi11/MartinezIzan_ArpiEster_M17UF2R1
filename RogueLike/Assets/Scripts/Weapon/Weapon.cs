@@ -13,14 +13,17 @@ public class Weapon : MonoBehaviour
     public float offsetX = 1f;
     public float offsetY = 0f;
 
+    // Nuevo campo para almacenar el transform del punto de inicio del disparo
+    public Transform inicioDeDisparo;
+
     void Update()
     {
         // Obtener la posición del ratón en el mundo
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
 
-        // Calcular la dirección hacia el ratón desde el arma
-        Vector3 direccion = mousePos - transform.position;
+        // Calcular la dirección hacia el ratón desde el punto de inicio del disparo
+        Vector3 direccion = mousePos - inicioDeDisparo.position;
 
         // Calcular el ángulo en radianes y convertirlo a grados
         float angle = Mathf.Atan2(direccion.y, direccion.x) * Mathf.Rad2Deg;
@@ -42,12 +45,12 @@ public class Weapon : MonoBehaviour
     {
         for (int i = 0; i < numProyectiles; i++)
         {
-            // Instancia el proyectil
-            GameObject proyectil = Instantiate(proyectilPrefab, transform.position, Quaternion.identity);
+            // Instancia el proyectil en el punto de inicio
+            GameObject proyectil = Instantiate(proyectilPrefab, inicioDeDisparo.position, Quaternion.identity);
 
             // Aplica fuerza al proyectil en la dirección calculada con dispersión
             Rigidbody2D rbProyectil = proyectil.GetComponent<Rigidbody2D>();
-            Vector3 direccion = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            Vector3 direccion = Camera.main.ScreenToWorldPoint(Input.mousePosition) - inicioDeDisparo.position;
 
             if (numProyectiles > 1)
             {

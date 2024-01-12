@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &63347370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 63347371}
+  m_Layer: 0
+  m_Name: InicioDeDisparo
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &63347371
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63347370}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.26, y: 2.18, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1308315660}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &124010479
 GameObject:
   m_ObjectHideFlags: 0
@@ -1351,10 +1382,11 @@ Transform:
   m_GameObject: {fileID: 1308315658}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.25, y: 0.08800006, z: 0}
+  m_LocalPosition: {x: 0.41, y: -0.04, z: 0}
   m_LocalScale: {x: 0.20559412, y: 0.22101408, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 63347371}
   m_Father: {fileID: 1117723769}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1308315662
@@ -1397,9 +1429,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   proyectilPrefab: {fileID: 7772482524752047705, guid: 5e5ee7d120b72d84596c5a44ab844154, type: 3}
-  velocidadProyectil: 30
-  numProyectiles: 100
+  velocidadProyectil: 50
+  numProyectiles: 5
   velocidadRotacionArma: 10
+  offsetX: 0.46
+  offsetY: 0
+  inicioDeDisparo: {fileID: 63347371}
 --- !u!1 &1567544880
 GameObject:
   m_ObjectHideFlags: 0
