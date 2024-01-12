@@ -6,11 +6,11 @@ public class TiendaSlot : MonoBehaviour
     GameManager gameManager;
     private void Start()
     {
-        inventario = GetComponent<Inventario>();
-        gameManager = GetComponent<GameManager>();
+        inventario = Inventario.instance;
+        gameManager = GameManager.instance;
     }
     public void ComprarArma(Arma arma)
     {
-        inventario.Add(arma);
+        if(gameManager.buyWeapon(arma)) inventario.Add(arma);
     }
 }

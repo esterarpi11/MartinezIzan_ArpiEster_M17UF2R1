@@ -6,7 +6,11 @@ public class Tienda : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null) return;
-        instance = this;
+        if (instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else Destroy(gameObject);
     }
 }

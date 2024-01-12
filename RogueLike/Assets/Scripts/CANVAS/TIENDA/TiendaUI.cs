@@ -10,6 +10,7 @@ public class TiendaUI : CanvasUI
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameManager.instance;
         _inputs.MainPlayer.Tienda.performed += CanvasActive;
     }
 

@@ -7,16 +7,21 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    Inventario inventario;
 
     private void Awake()
     {
-        if (instance != null) return;
-        instance = this;
+        if (instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else Destroy(gameObject);
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+        inventario = Inventario.instance;
     }
 
     // Update is called once per frame
@@ -29,8 +34,9 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Lobby") return true;
         else return false;
     }
-    public bool checkMoney(int weaponPrice)
+    public bool buyWeapon(Arma arma)
     {
-        return true;
+        if (!inventario.items.Contains(arma) && arma.price>0) return true;
+        return false;
     }
 }

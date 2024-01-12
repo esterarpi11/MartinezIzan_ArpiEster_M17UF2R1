@@ -10,10 +10,18 @@ public class Inventario : MonoBehaviour
     public int space = 6;
     public static Inventario instance;
 
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
     private void Awake()
     {
-        if (instance != null) return;
-        instance = this;
+        if (instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else Destroy(gameObject);
     }
     public List<Arma> items = new List<Arma>();
     public void Add(Arma arma)
