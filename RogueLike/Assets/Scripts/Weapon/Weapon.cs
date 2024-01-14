@@ -43,10 +43,11 @@ public class Weapon : MonoBehaviour
 
     void DispararProyectil()
     {
+        Quaternion rotacionArma = transform.rotation;
         for (int i = 0; i < numProyectiles; i++)
         {
             // Instancia el proyectil en el punto de inicio
-            GameObject proyectil = Instantiate(proyectilPrefab, inicioDeDisparo.position, Quaternion.identity);
+            GameObject proyectil = Instantiate(proyectilPrefab, inicioDeDisparo.position,rotacionArma);
 
             // Aplica fuerza al proyectil en la dirección calculada con dispersión
             Rigidbody2D rbProyectil = proyectil.GetComponent<Rigidbody2D>();
