@@ -55,6 +55,13 @@ public class EnemyBehaviour : MonoBehaviour
 
             if (vida <= 0)
             {
+                // Llamar a la función del jugador para sumar monedas
+                if (jugador != null)
+                {
+                    jugador.GetComponent<Player>().SumarMonedas(Random.Range(5, 8));
+                }
+
+                // Destruir el enemigo
                 Destroy(gameObject);
             }
         }
