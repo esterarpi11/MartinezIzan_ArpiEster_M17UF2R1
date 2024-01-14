@@ -17,9 +17,22 @@ public class Room : MonoBehaviour
     [SerializeField] GameObject decoracion1;
     [SerializeField] GameObject decoracion2;
     [SerializeField] GameObject decoracion3;
-    [SerializeField] GameObject decoracion4;
+
+    [SerializeField] GameObject enemy1;
+    [SerializeField] GameObject enemy2;
+    [SerializeField] GameObject enemy3;
+    [SerializeField] GameObject enemy4;
+    [SerializeField] GameObject enemy5;
+    [SerializeField] GameObject enemy6;
+
+    GameManager gameManager;
 
     public Vector2Int RoomIndex { get; set; }
+
+    private void Start()
+    {
+        gameManager = GameManager.instance;
+    }
 
     public void OpenDoor(Vector2Int direction)
     {
@@ -58,5 +71,47 @@ public class Room : MonoBehaviour
                 decoracion3.SetActive(true); 
                 break;
         }
+    }
+    public void SetEnemies()
+    {
+        int run = 2;
+
+        switch (run)
+        {
+            case 1:
+                setActive(getRandom(Random.Range(1, 3)));
+                break;
+            case 2:
+                setActive(getRandom(Random.Range(3, 5)));
+                break;
+            default:
+                setActive(getRandom(Random.Range(5, 7)));
+                break;
+        }
+    }
+    void setActive(int[] randoms)
+    {
+        GameObject[] enemies = { enemy1, enemy2, enemy3, enemy4, enemy5, enemy6 };
+        foreach(int i in randoms)
+        {
+            enemies[i-1].SetActive(true);
+        }
+    }
+    int[] getRandom(int tamano)
+    {
+        List<int> numerosDisponibles = new List<int>();
+        for (int i = 1; i <= 6; i++)
+        {
+            numerosDisponibles.Add(i);
+        }
+
+        int[] numerosRandom = new int[tamano];
+        for (int i = 0; i < tamano; i++)
+        {
+            int indiceRandom = Random.Range(0, numerosDisponibles.Count);
+            numerosRandom[i] = numerosDisponibles[indiceRandom];
+            numerosDisponibles.RemoveAt(indiceRandom);
+        }
+        return numerosRandom;
     }
 }

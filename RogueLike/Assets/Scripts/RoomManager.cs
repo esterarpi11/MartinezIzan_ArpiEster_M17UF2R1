@@ -86,6 +86,7 @@ public class RoomManager : MonoBehaviour
         roomObjects.Add(newRoom);
         OpenDoors(newRoom, x, y);
         ChooseFloor(newRoom);
+        SetEnemies(newRoom);
         return true;
     }
 
@@ -107,6 +108,11 @@ public class RoomManager : MonoBehaviour
     {
         Room newRoomScript = room.GetComponent<Room>();
         newRoomScript.ChosenFloor(Random.Range(1, 4));
+    }
+    void SetEnemies(GameObject room)
+    {
+        Room newRoomScript = room.GetComponent<Room>();
+        newRoomScript.SetEnemies();
     }
 
     void OpenDoors(GameObject room, int x, int y)
@@ -160,7 +166,7 @@ public class RoomManager : MonoBehaviour
         int count = 0;
 
         if (x > 0 && roomGrid[x - 1, y] != 0) count++; // Left
-        if (x > 0 && roomGrid[x - 1, y] != 0) count++; // Right
+        if (x > 0 && roomGrid[x + 1, y] != 0) count++; // Right
         if (y > 0 && roomGrid[x, y - 1] != 0) count++; // Bottom
         if (y > 0 && roomGrid[x, y + 1] != 0) count++; // Top
 

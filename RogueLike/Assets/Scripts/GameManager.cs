@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     Inventario inventario;
+    public int run = 1;
 
     private void Awake()
     {
