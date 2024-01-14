@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    [SerializeField] private GameObject BarraVida;
+    [SerializeField] private BarraDeVida barraDeVida;
     public float velocidad = 2f;  // Velocidad de persecución del enemigo
     private Transform jugador;// Referencia al transform del jugador
     public float statVida = 200f;
@@ -13,7 +13,7 @@ public class EnemyBehaviour : MonoBehaviour
     void Start()
     {
         vida = statVida;
-        BarraDeVida.UpdateHealthBar(statVida,vida);
+        barraDeVida.UpdateHealthBar(statVida,vida);
         // Buscar el objeto con el tag "Player" al inicio del juego
         jugador = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -48,7 +48,7 @@ public class EnemyBehaviour : MonoBehaviour
             Debug.Log("Enemigo impactado por bala.");
             // Por ejemplo, puedes destruir el enemigo
             Destroy(other.gameObject);
-            BarraDeVida.UpdateHealthBar(statVida,vida);
+            barraDeVida.UpdateHealthBar(statVida,vida);
 
             if (vida <= 0)
             {
