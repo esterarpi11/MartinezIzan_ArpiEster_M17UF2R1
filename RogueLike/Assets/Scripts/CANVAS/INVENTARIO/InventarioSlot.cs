@@ -17,7 +17,7 @@ public class InventarioSlot : MonoBehaviour
     {
         if(arma != null)
         {
-            arma.Use();
+            arma.Use();  
         }
     }
 }
