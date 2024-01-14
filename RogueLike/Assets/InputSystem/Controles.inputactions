@@ -40,15 +40,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Tienda",
-                    "type": "Button",
-                    "id": "b0381c8c-babe-427e-88b7-562ab0bf4155",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -137,17 +128,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Inventario",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fa5d57dd-eb66-4085-9d9f-6ca39a05885f",
-                    "path": "<Keyboard>/p",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Tienda",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
