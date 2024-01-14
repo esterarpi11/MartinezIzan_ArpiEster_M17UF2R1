@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public int run = 1;
     // Start is called before the first frame update
     void Start()
     {
