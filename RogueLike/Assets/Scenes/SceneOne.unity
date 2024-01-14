@@ -895,6 +895,7 @@ GameObject:
   m_Component:
   - component: {fileID: 569767228}
   - component: {fileID: 569767227}
+  - component: {fileID: 569767232}
   - component: {fileID: 569767226}
   - component: {fileID: 569767229}
   - component: {fileID: 569767230}
@@ -921,6 +922,7 @@ MonoBehaviour:
   barraDeVida: {fileID: 1028139471}
   velocidad: 2
   statVida: 200
+  vida: 0
 --- !u!212 &569767227
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1106,6 +1108,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.77, y: 2.16}
   m_EdgeRadius: 0
+--- !u!114 &569767232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569767225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e5148e6d49f0634d84bcef603288677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barraDeVida: {fileID: 1028139471}
+  velocidad: 2
+  jugador: {fileID: 0}
+  statVida: 200
+  vida: 0
+  alreadyHit: 0
 --- !u!1 &596698276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1710,7 +1730,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barraDeVida: {fileID: 1793504688}
   MaxHealth: 500
-  MonedasText: {fileID: 130816882}
 --- !u!212 &1117723768
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2006,7 +2025,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proyectilPrefab: {fileID: 5999693129094639100, guid: c037e4e3d83d22f41b829cf75a0f3304, type: 3}
   velocidadProyectil: 50
-  numProyectiles: 3
+  numProyectiles: 1
   velocidadRotacionArma: 10
   offsetX: 0.46
   offsetY: 0
@@ -2021,6 +2040,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1494762997}
   - component: {fileID: 1494762996}
+  - component: {fileID: 1494762998}
   - component: {fileID: 1494762995}
   - component: {fileID: 1494762994}
   - component: {fileID: 1494762993}
@@ -2164,6 +2184,7 @@ MonoBehaviour:
   barraDeVida: {fileID: 1613409817}
   velocidad: 2
   statVida: 200
+  vida: 0
 --- !u!212 &1494762996
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2232,6 +2253,24 @@ Transform:
   - {fileID: 1613409818}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1494762998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494762991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e5148e6d49f0634d84bcef603288677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barraDeVida: {fileID: 1613409817}
+  velocidad: 2
+  jugador: {fileID: 0}
+  statVida: 200
+  vida: 0
+  alreadyHit: 0
 --- !u!1 &1567544880
 GameObject:
   m_ObjectHideFlags: 0
@@ -2776,6 +2815,7 @@ MonoBehaviour:
   barraDeVida: {fileID: 631314025}
   velocidad: 2
   statVida: 200
+  vida: 0
 --- !u!212 &2014354086
 SpriteRenderer:
   m_ObjectHideFlags: 0

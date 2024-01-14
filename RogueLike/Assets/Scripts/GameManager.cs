@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     Inventario inventario;
     public int run = 1;
+    public int coins = 0;
+    //public Text MonedasText;
 
     private void Awake()
     {
@@ -37,7 +39,25 @@ public class GameManager : MonoBehaviour
     }
     public bool buyWeapon(Arma arma)
     {
-        if (!inventario.items.Contains(arma) && arma.price>0) return true;
+        if (!inventario.items.Contains(arma) && arma.price<=coins) return true;
         return false;
+    }
+    public void setEnemies()
+    {
+        PlayerPrefs.SetInt("enemiesKilled", PlayerPrefs.GetInt("enemiesKilled") + 1);
+    }
+    public void getEnemies()
+    {
+        PlayerPrefs.GetInt("enemiesKilled");
+    }
+    public void setCoins(int n)
+    {
+        coins += n;
+        //MonedasText.text = Monedas.ToString() + " GC";
+        PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins") + n);
+    }
+    public void getCoins()
+    {
+        PlayerPrefs.GetInt("coins");
     }
 }

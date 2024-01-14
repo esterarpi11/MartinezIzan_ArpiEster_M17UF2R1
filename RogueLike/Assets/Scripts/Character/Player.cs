@@ -8,8 +8,6 @@ public class Player : Character
     [SerializeField] private BarraDeVida barraDeVida;
     public float MaxHealth = 500f;
     private float ActualHealth;
-    public Text MonedasText;
-    public int Monedas { get; private set; } = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -39,12 +37,5 @@ public class Player : Character
                 Destroy(gameObject);
             }
         }
-    }
-    public void SumarMonedas(int cantidad)
-    {
-        Monedas += cantidad;
-        Debug.Log("Monedas actuales: " + Monedas);
-        MonedasText.text =Monedas.ToString()+" GC";
-        // Aquí puedes realizar acciones adicionales cuando se suman monedas
     }
 }
