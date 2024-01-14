@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     Inventario inventario;
     public int run = 1;
 
+    [SerializeField] GameObject buttons;
+    [SerializeField] GameObject tutorial;
+
     private void Awake()
     {
         if (instance == null)
@@ -39,5 +42,21 @@ public class GameManager : MonoBehaviour
     {
         if (!inventario.items.Contains(arma) && arma.price>0) return true;
         return false;
+    }
+    public void chooseScene(int n)
+    {
+        if (n >= 0)
+        {
+            SceneManager.GetSceneAt(n);
+        }
+        else
+        {
+            Application.Quit();
+        }
+    }
+    public void DisplayTutorial()
+    {
+        buttons.SetActive(!buttons.activeSelf);
+        tutorial.SetActive(!tutorial.activeSelf);
     }
 }
