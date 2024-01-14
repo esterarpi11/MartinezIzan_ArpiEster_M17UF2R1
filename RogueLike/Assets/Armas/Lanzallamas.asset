@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8793eaf895a8b6649a1e4360e576c0ec, type: 3}
-  m_Name: Escopeta
+  m_Name: Lanzallamas
   m_EditorClassIdentifier: 
-  name: Escopeta
+  name: Lanzallamas
   icon: {fileID: -1567337382, guid: b5a537984ebfcd24494a019027029781, type: 3}
-  damage: 75
-  price: 200
+  damage: 0

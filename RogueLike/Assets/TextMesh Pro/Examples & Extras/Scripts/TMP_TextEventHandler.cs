@@ -105,7 +105,13 @@ namespace TMPro
             if (m_TextComponent.GetType() == typeof(TextMeshProUGUI))
             {
                 m_Canvas = gameObject.GetComponentInParent<Canvas>();
-                
+                if (m_Canvas != null)
+                {
+                    if (m_Canvas.renderMode == RenderMode.ScreenSpaceOverlay)
+                        m_Camera = null;
+                    else
+                        m_Camera = m_Canvas.worldCamera;
+                }
             }
             else
             {
