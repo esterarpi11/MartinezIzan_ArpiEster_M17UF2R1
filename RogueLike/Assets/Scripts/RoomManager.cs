@@ -166,7 +166,7 @@ public class RoomManager : MonoBehaviour
         int count = 0;
 
         if (x > 0 && roomGrid[x - 1, y] != 0) count++; // Left
-        if (x > 0 && roomGrid[x - 1, y] != 0) count++; // Right
+        if (x > 0 && roomGrid[x + 1, y] != 0) count++; // Right
         if (y > 0 && roomGrid[x, y - 1] != 0) count++; // Bottom
         if (y > 0 && roomGrid[x, y + 1] != 0) count++; // Top
 
