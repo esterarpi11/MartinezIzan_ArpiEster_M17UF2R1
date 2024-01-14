@@ -15,4 +15,13 @@ public class GameManager : MonoBehaviour
     {
         
     }
+    void setPrefs(string pref)
+    {
+        PlayerPrefs.SetInt(pref, PlayerPrefs.GetInt(pref)+1);
+        PlayerPrefs.Save();
+    }
+    void getPrefs(string pref)
+    {
+        PlayerPrefs.GetInt(pref);
+    }
 }
