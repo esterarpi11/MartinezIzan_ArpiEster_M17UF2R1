@@ -64,6 +64,15 @@ namespace GameInputs
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tienda"",
+                    ""type"": ""Button"",
+                    ""id"": ""b0381c8c-babe-427e-88b7-562ab0bf4155"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -154,6 +163,17 @@ namespace GameInputs
                     ""action"": ""Inventario"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fa5d57dd-eb66-4085-9d9f-6ca39a05885f"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tienda"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -166,6 +186,7 @@ namespace GameInputs
             m_MainPlayer_Chat = m_MainPlayer.FindAction("Chat", throwIfNotFound: true);
             m_MainPlayer_Movement = m_MainPlayer.FindAction("Movement", throwIfNotFound: true);
             m_MainPlayer_Inventario = m_MainPlayer.FindAction("Inventario", throwIfNotFound: true);
+            m_MainPlayer_Tienda = m_MainPlayer.FindAction("Tienda", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -231,6 +252,7 @@ namespace GameInputs
         private readonly InputAction m_MainPlayer_Chat;
         private readonly InputAction m_MainPlayer_Movement;
         private readonly InputAction m_MainPlayer_Inventario;
+        private readonly InputAction m_MainPlayer_Tienda;
         public struct MainPlayerActions
         {
             private @GameInput m_Wrapper;
@@ -239,6 +261,7 @@ namespace GameInputs
             public InputAction @Chat => m_Wrapper.m_MainPlayer_Chat;
             public InputAction @Movement => m_Wrapper.m_MainPlayer_Movement;
             public InputAction @Inventario => m_Wrapper.m_MainPlayer_Inventario;
+            public InputAction @Tienda => m_Wrapper.m_MainPlayer_Tienda;
             public InputActionMap Get() { return m_Wrapper.m_MainPlayer; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -260,6 +283,9 @@ namespace GameInputs
                 @Inventario.started += instance.OnInventario;
                 @Inventario.performed += instance.OnInventario;
                 @Inventario.canceled += instance.OnInventario;
+                @Tienda.started += instance.OnTienda;
+                @Tienda.performed += instance.OnTienda;
+                @Tienda.canceled += instance.OnTienda;
             }
 
             private void UnregisterCallbacks(IMainPlayerActions instance)
@@ -276,6 +302,9 @@ namespace GameInputs
                 @Inventario.started -= instance.OnInventario;
                 @Inventario.performed -= instance.OnInventario;
                 @Inventario.canceled -= instance.OnInventario;
+                @Tienda.started -= instance.OnTienda;
+                @Tienda.performed -= instance.OnTienda;
+                @Tienda.canceled -= instance.OnTienda;
             }
 
             public void RemoveCallbacks(IMainPlayerActions instance)
@@ -299,6 +328,7 @@ namespace GameInputs
             void OnChat(InputAction.CallbackContext context);
             void OnMovement(InputAction.CallbackContext context);
             void OnInventario(InputAction.CallbackContext context);
+            void OnTienda(InputAction.CallbackContext context);
         }
     }
 }

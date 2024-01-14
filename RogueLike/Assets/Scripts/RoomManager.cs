@@ -86,6 +86,7 @@ public class RoomManager : MonoBehaviour
         roomObjects.Add(newRoom);
         OpenDoors(newRoom, x, y);
         ChooseFloor(newRoom);
+        GetEnemies(newRoom);
         return true;
     }
 
@@ -107,6 +108,11 @@ public class RoomManager : MonoBehaviour
     {
         Room newRoomScript = room.GetComponent<Room>();
         newRoomScript.ChosenFloor(Random.Range(1, 4));
+    }
+    void GetEnemies(GameObject room)
+    {
+        Room newRoomScript = room.GetComponent<Room>();
+        newRoomScript.GetEnemies();
     }
 
     void OpenDoors(GameObject room, int x, int y)
