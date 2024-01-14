@@ -17,22 +17,10 @@ public class Room : MonoBehaviour
     [SerializeField] GameObject decoracion1;
     [SerializeField] GameObject decoracion2;
     [SerializeField] GameObject decoracion3;
-
-    [SerializeField] GameObject enemy1;
-    [SerializeField] GameObject enemy2;
-    [SerializeField] GameObject enemy3;
-    [SerializeField] GameObject enemy4;
-    [SerializeField] GameObject enemy5;
-    [SerializeField] GameObject enemy6;
-
-    //GameManager gameManager;
+    [SerializeField] GameObject decoracion4;
 
     public Vector2Int RoomIndex { get; set; }
 
-    private void Start()
-    {
-        //gameManager = GameManager.gameManager;
-    }
     public void OpenDoor(Vector2Int direction)
     {
         if(direction == Vector2Int.up)
@@ -70,52 +58,5 @@ public class Room : MonoBehaviour
                 decoracion3.SetActive(true); 
                 break;
         }
-    }
-    public void GetEnemies()
-    {      
-        int run = Random.Range(1,7);
-
-        switch (run)
-        {
-            case 1:
-                setActive(Random.Range(1, 3));
-                break;
-            case 2:
-                setActive(Random.Range(3, 5));
-                break;
-            case 3:
-                setActive(Random.Range(5, 7));
-                break;
-            default: 
-                break;
-        }
-    }
-
-    void setActive(int tamano)
-    {
-        GameObject[] enemies = { enemy1, enemy2, enemy3, enemy4, enemy5, enemy6 };
-        int[] randoms = getRandoms(tamano);
-        foreach (int i in randoms)
-        {
-             enemies[i].SetActive(true);
-        }
-    }
-    int[] getRandoms(int tamano)
-    {
-        List<int> numerosDisponibles = new List<int>();
-        for (int i = 1; i <= 6; i++)
-        {
-            numerosDisponibles.Add(i);
-        }
-
-        int[] numerosRandom = new int[tamano];
-        for (int i = 0; i < tamano; i++)
-        {
-            int indiceRandom = Random.Range(0, numerosDisponibles.Count);
-            numerosRandom[i] = numerosDisponibles[indiceRandom];
-            numerosDisponibles.RemoveAt(indiceRandom);
-        }
-
-        return numerosRandom;
     }
 }
