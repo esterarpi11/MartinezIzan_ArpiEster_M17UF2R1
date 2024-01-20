@@ -1120,12 +1120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5148e6d49f0634d84bcef603288677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barraDeVida: {fileID: 1028139471}
-  velocidad: 2
-  jugador: {fileID: 0}
-  statVida: 200
-  vida: 0
-  alreadyHit: 0
 --- !u!1 &596698276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1910,7 +1904,7 @@ GameObject:
   - component: {fileID: 1308315659}
   - component: {fileID: 1308315662}
   m_Layer: 0
-  m_Name: lanzagranadas_1
+  m_Name: Arma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1957,7 +1951,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 20
-  m_Sprite: {fileID: -1639554328, guid: b5a537984ebfcd24494a019027029781, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1965,7 +1959,7 @@ SpriteRenderer:
   m_Size: {x: 10.46, y: 5.78}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1308315660
@@ -2023,9 +2017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa6657f0f8b8ef44a44cd5e9be7d216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  proyectilPrefab: {fileID: 5999693129094639100, guid: c037e4e3d83d22f41b829cf75a0f3304, type: 3}
-  velocidadProyectil: 50
-  numProyectiles: 1
+  arma: {fileID: 11400000, guid: 19a4efd96874e604f85521f7e31951d6, type: 2}
   velocidadRotacionArma: 10
   offsetX: 0.46
   offsetY: 0
@@ -2265,12 +2257,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5148e6d49f0634d84bcef603288677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barraDeVida: {fileID: 1613409817}
-  velocidad: 2
-  jugador: {fileID: 0}
-  statVida: 200
-  vida: 0
-  alreadyHit: 0
 --- !u!1 &1567544880
 GameObject:
   m_ObjectHideFlags: 0

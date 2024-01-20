@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public GameObject proyectilPrefab;
-    public float velocidadProyectil = 10f;
-    public int numProyectiles = 1;
+    public static Weapon Instance;
+    public Arma arma;
     public float velocidadRotacionArma = 5f;
+    SpriteRenderer spriteRenderer;
 
     // Variables para ajustar la posición relativa del arma
     public float offsetX = 1f;
@@ -16,6 +16,11 @@ public class Weapon : MonoBehaviour
     // Nuevo campo para almacenar el transform del punto de inicio del disparo
     public Transform inicioDeDisparo;
 
+    private void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = arma.icon;
+    }
     void Update()
     {
         // Obtener la posición del ratón en el mundo
@@ -44,16 +49,16 @@ public class Weapon : MonoBehaviour
     void DispararProyectil()
     {
         Quaternion rotacionArma = transform.rotation;
-        for (int i = 0; i < numProyectiles; i++)
+        for (int i = 0; i < arma.numProyectiles; i++)
         {
             // Instancia el proyectil en el punto de inicio
-            GameObject proyectil = Instantiate(proyectilPrefab, inicioDeDisparo.position,rotacionArma);
+            GameObject proyectil = Instantiate(arma.proyectil, inicioDeDisparo.position,rotacionArma);
 
             // Aplica fuerza al proyectil en la dirección calculada con dispersión
             Rigidbody2D rbProyectil = proyectil.GetComponent<Rigidbody2D>();
             Vector3 direccion = Camera.main.ScreenToWorldPoint(Input.mousePosition) - inicioDeDisparo.position;
 
-            if (numProyectiles > 1)
+            if (arma.numProyectiles > 1)
             {
                 // Calcula un ángulo de dispersión aleatorio en el rango de 120 grados
                 float dispersionAngle = Random.Range(-60f, 60f);
@@ -63,12 +68,12 @@ public class Weapon : MonoBehaviour
                 Vector3 dispersedDirection = dispersionRotation * direccion.normalized;
 
                 // Aplica fuerza al proyectil en la dirección dispersa
-                rbProyectil.velocity = dispersedDirection * velocidadProyectil;
+                rbProyectil.velocity = dispersedDirection * arma.velocidadProyectil;
             }
             else
             {
                 // Si solo hay un proyectil, aplica la fuerza en la dirección original
-                rbProyectil.velocity = direccion.normalized * velocidadProyectil;
+                rbProyectil.velocity = direccion.normalized * arma.velocidadProyectil;
             }
 
             // Destruye el proyectil después de un tiempo

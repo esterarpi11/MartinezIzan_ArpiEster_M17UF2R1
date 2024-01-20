@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25733f4d83296d44f8c734efce71ddf4, type: 3}
-  m_Name: Sniper
+  m_Name: Escopeta
   m_EditorClassIdentifier: 
   name: arma
-  icon: {fileID: 1120435292, guid: 24770f737b71a3f4e99f6a0089885131, type: 3}
+  icon: {fileID: -1639554328, guid: 31edc4bbe31b0d94da22dcbc18733842, type: 3}
   damage: 0
-  price: 200
+  price: 100
+  numProyectiles: 3
+  velocidadProyectil: 10
+  proyectil: {fileID: 1029831891144449223, guid: cd50e507b0abf4446b5484ce2bbad413, type: 3}
