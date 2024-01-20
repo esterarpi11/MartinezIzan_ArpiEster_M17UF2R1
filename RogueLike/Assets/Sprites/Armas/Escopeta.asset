@@ -18,4 +18,4 @@ MonoBehaviour:
   price: 100
   numProyectiles: 3
   velocidadProyectil: 10
-  proyectil: {fileID: 1029831891144449223, guid: cd50e507b0abf4446b5484ce2bbad413, type: 3}
+  proyectil: {fileID: 5999693129094639100, guid: a7e56d38e7b262e42a714847e9e28666, type: 3}
