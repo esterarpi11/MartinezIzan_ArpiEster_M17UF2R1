@@ -8,7 +8,17 @@ public class Player : Character
     [SerializeField] private BarraDeVida barraDeVida;
     public float MaxHealth = 500f;
     private float ActualHealth;
+    public static Player instance;
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else Destroy(gameObject);
+    }
     // Start is called before the first frame update
     void Start()
     {

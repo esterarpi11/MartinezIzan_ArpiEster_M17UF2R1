@@ -1,6 +1,8 @@
+using GameInputs;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Weapon : MonoBehaviour
 {
@@ -15,11 +17,21 @@ public class Weapon : MonoBehaviour
 
     // Nuevo campo para almacenar el transform del punto de inicio del disparo
     public Transform inicioDeDisparo;
+    public Transform rotation; 
+    public GameInput _inputs;
+
+    private void Awake()
+    {
+        _inputs = new GameInput();
+        _inputs.MainPlayer.Enable();
+    }
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = arma.icon;
+        spriteRenderer.sprite = arma.icon; 
+        _inputs.MainPlayer.Disparar.performed += DispararProyectil;
+
     }
     void Update()
     {
@@ -39,14 +51,11 @@ public class Weapon : MonoBehaviour
         // Ajustar la posición del arma relativa al jugador
         transform.position = new Vector3(transform.parent.position.x + offsetX, transform.parent.position.y + offsetY, transform.position.z);
 
-        // Detectar clic izquierdo del mouse
-        if (Input.GetMouseButtonDown(0))
-        {
-            DispararProyectil();
-        }
+        if (rotation.rotation.z > 90 || rotation.rotation.z < -90) spriteRenderer.sprite = arma.iconReverse;
+        else spriteRenderer.sprite = arma.icon;
     }
 
-    void DispararProyectil()
+    void DispararProyectil(InputAction.CallbackContext obj)
     {
         Quaternion rotacionArma = transform.rotation;
         for (int i = 0; i < arma.numProyectiles; i++)

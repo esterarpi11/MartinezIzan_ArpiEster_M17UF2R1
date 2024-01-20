@@ -10,6 +10,11 @@ public class GameManager : MonoBehaviour
     Inventario inventario;
     public int run = 1;
     public int coins = 0;
+    public GameObject enterDungeon;
+    public GameObject pauseMenu;
+    bool menuAbierto = false;
+    public GameObject player;
+    GameObject spawn;
     //public Text MonedasText;
 
     private void Awake()
@@ -25,6 +30,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         inventario = Inventario.instance;
+        spawn = GameObject.Find("Spawn");
     }
 
     // Update is called once per frame
@@ -59,5 +65,26 @@ public class GameManager : MonoBehaviour
     public void getCoins()
     {
         PlayerPrefs.GetInt("coins");
+    }
+    public void EnterDungeon()
+    {
+        enterDungeon.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    public void ChooseEnter(int n)
+    {
+        Time.timeScale = 1f;
+        if (n >= 1)
+        {
+            SceneManager.LoadScene(2);
+        }
+        else {
+            enterDungeon.SetActive(false);
+        }
+    }
+    public bool MenuAbierto()
+    {
+        if(menuAbierto == true) return true;
+        return false;
     }
 }
