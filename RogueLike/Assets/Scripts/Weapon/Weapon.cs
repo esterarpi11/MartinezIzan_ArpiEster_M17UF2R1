@@ -57,36 +57,40 @@ public class Weapon : MonoBehaviour
 
     void DispararProyectil(InputAction.CallbackContext obj)
     {
+        if (arma.isMeele == false) 
+        { 
         Quaternion rotacionArma = transform.rotation;
-        for (int i = 0; i < arma.numProyectiles; i++)
-        {
-            // Instancia el proyectil en el punto de inicio
-            GameObject proyectil = Instantiate(arma.proyectil, inicioDeDisparo.position,rotacionArma);
-
-            // Aplica fuerza al proyectil en la dirección calculada con dispersión
-            Rigidbody2D rbProyectil = proyectil.GetComponent<Rigidbody2D>();
-            Vector3 direccion = Camera.main.ScreenToWorldPoint(Input.mousePosition) - inicioDeDisparo.position;
-
-            if (arma.numProyectiles > 1)
+            for (int i = 0; i < arma.numProyectiles; i++)
             {
-                // Calcula un ángulo de dispersión aleatorio en el rango de 120 grados
-                float dispersionAngle = Random.Range(-60f, 60f);
+                // Instancia el proyectil en el punto de inicio
+                GameObject proyectil = Instantiate(arma.proyectil, inicioDeDisparo.position,rotacionArma);
 
-                // Rota la dirección original según el ángulo de dispersión
-                Quaternion dispersionRotation = Quaternion.AngleAxis(dispersionAngle, Vector3.forward);
-                Vector3 dispersedDirection = dispersionRotation * direccion.normalized;
+                // Aplica fuerza al proyectil en la dirección calculada con dispersión
+                Rigidbody2D rbProyectil = proyectil.GetComponent<Rigidbody2D>();
+                Vector3 direccion = Camera.main.ScreenToWorldPoint(Input.mousePosition) - inicioDeDisparo.position;
+                direccion.z = 0f;
 
-                // Aplica fuerza al proyectil en la dirección dispersa
-                rbProyectil.velocity = dispersedDirection * arma.velocidadProyectil;
+                if (arma.numProyectiles > 1)
+                {
+                    // Calcula un ángulo de dispersión aleatorio en el rango de 120 grados
+                    float dispersionAngle = Random.Range(-30f, 30f);
+
+                    // Rota la dirección original según el ángulo de dispersión
+                    Quaternion dispersionRotation = Quaternion.AngleAxis(dispersionAngle, Vector3.forward);
+                    Vector3 dispersedDirection = dispersionRotation * direccion.normalized;
+
+                    // Aplica fuerza al proyectil en la dirección dispersa
+                    rbProyectil.velocity = dispersedDirection * arma.velocidadProyectil;
+                }
+                else
+                {
+                    // Si solo hay un proyectil, aplica la fuerza en la dirección original
+                    rbProyectil.velocity = direccion.normalized * arma.velocidadProyectil;
+                }
+
+                // Destruye el proyectil después de un tiempo
+                Destroy(proyectil, 2f);
             }
-            else
-            {
-                // Si solo hay un proyectil, aplica la fuerza en la dirección original
-                rbProyectil.velocity = direccion.normalized * arma.velocidadProyectil;
-            }
-
-            // Destruye el proyectil después de un tiempo
-            Destroy(proyectil, 2f);
         }
     }
 }

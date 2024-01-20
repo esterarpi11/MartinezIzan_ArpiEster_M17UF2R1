@@ -20,3 +20,4 @@ MonoBehaviour:
   numProyectiles: 3
   velocidadProyectil: 10
   proyectil: {fileID: 5999693129094639100, guid: a7e56d38e7b262e42a714847e9e28666, type: 3}
+  isMeele: 0

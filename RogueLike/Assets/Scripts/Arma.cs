@@ -12,6 +12,7 @@ public class Arma : ScriptableObject
     public float velocidadProyectil = 10f;
     public GameObject proyectil = null;
     Weapon arma;
+    public bool isMeele = false;
 
     public virtual void Use()
     {
