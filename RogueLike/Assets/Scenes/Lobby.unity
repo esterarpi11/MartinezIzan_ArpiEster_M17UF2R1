@@ -3916,7 +3916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa6657f0f8b8ef44a44cd5e9be7d216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arma: {fileID: 11400000, guid: 12667d83ac3991d4e8307e690eaa84df, type: 2}
+  arma: {fileID: 11400000, guid: 19a4efd96874e604f85521f7e31951d6, type: 2}
   velocidadRotacionArma: 10
   offsetX: 0.46
   offsetY: 0
@@ -5567,6 +5567,8 @@ MonoBehaviour:
   enterDungeon: {fileID: 199914213}
   pauseMenu: {fileID: 0}
   player: {fileID: 0}
+  buttons: {fileID: 0}
+  tutorial: {fileID: 0}
 --- !u!4 &1302260440
 Transform:
   m_ObjectHideFlags: 0
