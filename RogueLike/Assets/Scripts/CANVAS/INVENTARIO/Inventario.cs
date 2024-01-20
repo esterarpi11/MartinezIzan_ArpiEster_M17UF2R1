@@ -10,10 +10,6 @@ public class Inventario : MonoBehaviour
     public int space = 6;
     public static Inventario instance;
 
-    private void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
     private void Awake()
     {
         if (instance == null)

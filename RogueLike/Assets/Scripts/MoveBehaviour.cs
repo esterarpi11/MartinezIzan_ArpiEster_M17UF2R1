@@ -46,5 +46,4 @@ public class MoveBehaviour : MonoBehaviour
     {
         _rigidbody.velocity = obj.ReadValue<Vector2>() * _speed;
     }
-
 }

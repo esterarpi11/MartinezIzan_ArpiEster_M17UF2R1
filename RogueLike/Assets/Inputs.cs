@@ -39,15 +39,6 @@ namespace GameInputs
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Chat"",
-                    ""type"": ""Button"",
-                    ""id"": ""ac07ded3-f037-42c1-a98d-069b3b38f19a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Movement"",
                     ""type"": ""PassThrough"",
                     ""id"": ""a04cb810-3fe2-4386-9672-92e9960568e0"",
@@ -69,6 +60,24 @@ namespace GameInputs
                     ""name"": ""Tienda"",
                     ""type"": ""Button"",
                     ""id"": ""b0381c8c-babe-427e-88b7-562ab0bf4155"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Disparar"",
+                    ""type"": ""Button"",
+                    ""id"": ""3a333dda-acf8-45e4-a4fa-ac0f483d4a68"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pausa"",
+                    ""type"": ""Button"",
+                    ""id"": ""5f8c1c70-094c-49e7-b14e-e9ccc2c05054"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -144,17 +153,6 @@ namespace GameInputs
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f2534170-6b5f-4056-aeaa-4529792d1c19"",
-                    ""path"": ""<Keyboard>/#(E)"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Chat"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""ab12065d-94eb-46c4-9e74-437fa44f6fbc"",
                     ""path"": ""<Keyboard>/i"",
                     ""interactions"": """",
@@ -174,6 +172,28 @@ namespace GameInputs
                     ""action"": ""Tienda"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cf008486-d09d-43f7-978d-169e5f67348a"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Disparar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ddfec086-c83b-4d20-8971-de8088f37ad1"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pausa"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -183,10 +203,11 @@ namespace GameInputs
             // MainPlayer
             m_MainPlayer = asset.FindActionMap("MainPlayer", throwIfNotFound: true);
             m_MainPlayer_Attack = m_MainPlayer.FindAction("Attack", throwIfNotFound: true);
-            m_MainPlayer_Chat = m_MainPlayer.FindAction("Chat", throwIfNotFound: true);
             m_MainPlayer_Movement = m_MainPlayer.FindAction("Movement", throwIfNotFound: true);
             m_MainPlayer_Inventario = m_MainPlayer.FindAction("Inventario", throwIfNotFound: true);
             m_MainPlayer_Tienda = m_MainPlayer.FindAction("Tienda", throwIfNotFound: true);
+            m_MainPlayer_Disparar = m_MainPlayer.FindAction("Disparar", throwIfNotFound: true);
+            m_MainPlayer_Pausa = m_MainPlayer.FindAction("Pausa", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -249,19 +270,21 @@ namespace GameInputs
         private readonly InputActionMap m_MainPlayer;
         private List<IMainPlayerActions> m_MainPlayerActionsCallbackInterfaces = new List<IMainPlayerActions>();
         private readonly InputAction m_MainPlayer_Attack;
-        private readonly InputAction m_MainPlayer_Chat;
         private readonly InputAction m_MainPlayer_Movement;
         private readonly InputAction m_MainPlayer_Inventario;
         private readonly InputAction m_MainPlayer_Tienda;
+        private readonly InputAction m_MainPlayer_Disparar;
+        private readonly InputAction m_MainPlayer_Pausa;
         public struct MainPlayerActions
         {
             private @GameInput m_Wrapper;
             public MainPlayerActions(@GameInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @Attack => m_Wrapper.m_MainPlayer_Attack;
-            public InputAction @Chat => m_Wrapper.m_MainPlayer_Chat;
             public InputAction @Movement => m_Wrapper.m_MainPlayer_Movement;
             public InputAction @Inventario => m_Wrapper.m_MainPlayer_Inventario;
             public InputAction @Tienda => m_Wrapper.m_MainPlayer_Tienda;
+            public InputAction @Disparar => m_Wrapper.m_MainPlayer_Disparar;
+            public InputAction @Pausa => m_Wrapper.m_MainPlayer_Pausa;
             public InputActionMap Get() { return m_Wrapper.m_MainPlayer; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -274,9 +297,6 @@ namespace GameInputs
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
-                @Chat.started += instance.OnChat;
-                @Chat.performed += instance.OnChat;
-                @Chat.canceled += instance.OnChat;
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
@@ -286,6 +306,12 @@ namespace GameInputs
                 @Tienda.started += instance.OnTienda;
                 @Tienda.performed += instance.OnTienda;
                 @Tienda.canceled += instance.OnTienda;
+                @Disparar.started += instance.OnDisparar;
+                @Disparar.performed += instance.OnDisparar;
+                @Disparar.canceled += instance.OnDisparar;
+                @Pausa.started += instance.OnPausa;
+                @Pausa.performed += instance.OnPausa;
+                @Pausa.canceled += instance.OnPausa;
             }
 
             private void UnregisterCallbacks(IMainPlayerActions instance)
@@ -293,9 +319,6 @@ namespace GameInputs
                 @Attack.started -= instance.OnAttack;
                 @Attack.performed -= instance.OnAttack;
                 @Attack.canceled -= instance.OnAttack;
-                @Chat.started -= instance.OnChat;
-                @Chat.performed -= instance.OnChat;
-                @Chat.canceled -= instance.OnChat;
                 @Movement.started -= instance.OnMovement;
                 @Movement.performed -= instance.OnMovement;
                 @Movement.canceled -= instance.OnMovement;
@@ -305,6 +328,12 @@ namespace GameInputs
                 @Tienda.started -= instance.OnTienda;
                 @Tienda.performed -= instance.OnTienda;
                 @Tienda.canceled -= instance.OnTienda;
+                @Disparar.started -= instance.OnDisparar;
+                @Disparar.performed -= instance.OnDisparar;
+                @Disparar.canceled -= instance.OnDisparar;
+                @Pausa.started -= instance.OnPausa;
+                @Pausa.performed -= instance.OnPausa;
+                @Pausa.canceled -= instance.OnPausa;
             }
 
             public void RemoveCallbacks(IMainPlayerActions instance)
@@ -325,10 +354,11 @@ namespace GameInputs
         public interface IMainPlayerActions
         {
             void OnAttack(InputAction.CallbackContext context);
-            void OnChat(InputAction.CallbackContext context);
             void OnMovement(InputAction.CallbackContext context);
             void OnInventario(InputAction.CallbackContext context);
             void OnTienda(InputAction.CallbackContext context);
+            void OnDisparar(InputAction.CallbackContext context);
+            void OnPausa(InputAction.CallbackContext context);
         }
     }
 }
