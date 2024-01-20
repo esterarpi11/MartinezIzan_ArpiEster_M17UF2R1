@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: arma
   icon: {fileID: 1592416378, guid: 760fdd09c6ecd7142ba72c4e4a72add4, type: 3}
+  iconReverse: {fileID: 0}
   damage: 0
   price: 200
   numProyectiles: 1
-  velocidadProyectil: 10
+  velocidadProyectil: 15
   proyectil: {fileID: 5999693129094639100, guid: c037e4e3d83d22f41b829cf75a0f3304, type: 3}
