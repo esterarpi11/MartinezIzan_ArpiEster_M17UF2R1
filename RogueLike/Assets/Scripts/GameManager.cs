@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     GameObject spawn;
     //public Text MonedasText;
 
+    [SerializeField] GameObject buttons;
+    [SerializeField] GameObject tutorial;
+
     private void Awake()
     {
         if (instance == null)
@@ -86,5 +89,21 @@ public class GameManager : MonoBehaviour
     {
         if(menuAbierto == true) return true;
         return false;
+    }
+    public void chooseScene(int n)
+    {
+        if (n >= 0)
+        {
+            SceneManager.GetSceneAt(n);
+        }
+        else
+        {
+            Application.Quit();
+        }
+    }
+    public void DisplayTutorial()
+    {
+        buttons.SetActive(!buttons.activeSelf);
+        tutorial.SetActive(!tutorial.activeSelf);
     }
 }
