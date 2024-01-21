@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     Inventario inventario;
     public int run = 1;
-    public int coins = 500;
+    private int coins = 500;
     public GameObject enterDungeon;
     public GameObject pauseMenu;
     bool menuAbierto = false;
@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     GameObject spawn;
     public int numeroEnemigos;
     //public Text MonedasText;
-
     public AudioSource endMazmorra;
 
     private void Awake()
@@ -38,18 +37,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(SceneManager.GetActiveScene().buildIndex == 2)
+        if (SceneManager.GetActiveScene().buildIndex == 2)
         {
             spawn = GameObject.Find("Spawn");
             player = GameObject.Find("Player");
             spawn.transform.position = player.transform.position;
 
-            if(numeroEnemigos == 0)
+            if (numeroEnemigos == 0)
             {
                 endMazmorra.Play();
                 StartCoroutine(wait());
             }
-        }    
+        }
     }
     public bool openTienda()
     {
@@ -58,26 +57,26 @@ public class GameManager : MonoBehaviour
     }
     public bool buyWeapon(Arma arma)
     {
-        if (!inventario.items.Contains(arma) && arma.price<=coins) return true;
+        if (!inventario.items.Contains(arma) && arma.price <= coins)
+        {
+            Debug.Log(!inventario.items.Contains(arma));
+            Debug.Log(arma.price + " " + coins);
+            coins -= arma.price;
+            return true;
+        }
+        Debug.Log(!inventario.items.Contains(arma));
+        Debug.Log(arma.price + " " + coins);
         return false;
     }
     public void setEnemies()
     {
         PlayerPrefs.SetInt("enemiesKilled", PlayerPrefs.GetInt("enemiesKilled") + 1);
     }
-    public void getEnemies()
-    {
-        PlayerPrefs.GetInt("enemiesKilled");
-    }
     public void setCoins(int n)
     {
         coins += n;
-        //MonedasText.text = Monedas.ToString() + " GC";
+        //MonedasText.Text = Monedas.ToString() + " oro";
         PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins") + n);
-    }
-    public void getCoins()
-    {
-        PlayerPrefs.GetInt("coins");
     }
     public void EnterDungeon()
     {
@@ -91,20 +90,21 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(2);
         }
-        else {
+        else
+        {
             enterDungeon.SetActive(false);
         }
     }
     public bool MenuAbierto()
     {
-        if(menuAbierto == true) return true;
+        if (menuAbierto == true) return true;
         return false;
     }
     public void chooseScene(int n)
     {
         if (n >= 0)
         {
-            SceneManager.GetSceneAt(n);
+            SceneManager.LoadScene(n);
         }
         else
         {

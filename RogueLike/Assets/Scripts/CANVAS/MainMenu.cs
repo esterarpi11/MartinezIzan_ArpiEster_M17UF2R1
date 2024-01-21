@@ -5,12 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    GameManager gameManager;
     public GameObject mainMenu;
     public GameObject tutorial;
     void Awake()
     {
-        gameManager = GameManager.instance;
     }
 
     public void clickButton(int n)
@@ -21,11 +19,8 @@ public class MainMenu : MonoBehaviour
                 tutorial.SetActive(!tutorial.activeSelf);
                 mainMenu.SetActive(!mainMenu.activeSelf);
                 break;
-            case -1:
-                Application.Quit();
-                break;
             default:
-                SceneManager.LoadScene(n);
+                GameManager.instance.chooseScene(n);
                 break;
         }
     }

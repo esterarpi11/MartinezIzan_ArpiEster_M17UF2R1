@@ -11,6 +11,14 @@ public class TiendaSlot : MonoBehaviour
     }
     public void ComprarArma(Arma arma)
     {
-        if(gameManager.buyWeapon(arma)) inventario.Add(arma);
+        if (gameManager.buyWeapon(arma))
+        {
+            inventario.Add(arma);
+            Debug.Log("comprando");
+        }
+        else
+        {
+            Debug.Log("no pudo ser");
+        }
     }
 }
