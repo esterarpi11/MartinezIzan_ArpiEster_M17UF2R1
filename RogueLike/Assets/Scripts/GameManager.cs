@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         inventario = Inventario.instance;
+        string scene = SceneManager.GetActiveScene().name;
+        MusicManager.instance.PlayMusic(scene);
     }
 
     // Update is called once per frame
@@ -40,7 +42,7 @@ public class GameManager : MonoBehaviour
             spawn = GameObject.Find("Spawn");
             player = GameObject.Find("Player");
             spawn.transform.position = player.transform.position;
-        }
+        }    
     }
     public bool openTienda()
     {
