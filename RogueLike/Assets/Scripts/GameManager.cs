@@ -16,10 +16,12 @@ public class GameManager : MonoBehaviour
     bool menuAbierto = false;
     public GameObject player;
     GameObject spawn;
+    GameObject camera;
     public int numeroEnemigos;
     public Text MonedasText;
     public AudioSource endMazmorra;
     public bool generationComplete = false;
+    GameObject respawn;
 
     private void Awake()
     {
@@ -39,7 +41,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 2)
+        if(SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            camera = GameObject.Find("Camera");
+            player = GameObject.Find("Player");
+            camera.transform.position = player.transform.position;
+        }
+        if (generationComplete && SceneManager.GetActiveScene().buildIndex > 1 && SceneManager.GetActiveScene().buildIndex < 5)
         {
             spawn = GameObject.Find("Spawn");
             player = GameObject.Find("Player");
@@ -47,17 +55,24 @@ public class GameManager : MonoBehaviour
 
             if (generationComplete && numeroEnemigos == 0)
             {
-                run++;
-                if (run < 4)
+                generationComplete = false;
+                if (run < 3)
                 {
+                    run++;
                     endMazmorra.Play();
-                    StartCoroutine(wait());
+                    StartCoroutine(wait());               
                 }
                 else
                 {
+                    endMazmorra.Play();
                     SceneManager.LoadScene(6);
+                    player.SetActive(false);
                 }
             }
+        }
+        if(SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            respawn = GameObject.Find("RespawnLobby");
         }
         if(MonedasText != null) MonedasText.text = coins.ToString() + " oro";
     }
@@ -77,7 +92,9 @@ public class GameManager : MonoBehaviour
     }
     public void setEnemies()
     {
-        PlayerPrefs.SetInt("enemiesKilled", PlayerPrefs.GetInt("enemiesKilled") + 1);
+        int enemies = PlayerPrefs.GetInt("enemiesKilled");
+        enemies++;
+        PlayerPrefs.SetInt("enemiesKilled", enemies);
     }
     public void setCoins(int n)
     {
@@ -136,16 +153,12 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         PlayerPrefs.SetInt("coins", 0);
+        coins = 0;
         PlayerPrefs.SetInt("enemiesKilled", 0);
         Inventario.instance.items.Clear();
     }
     public void tpPLayerLobby()
     {
-        GameObject respawn = GameObject.Find("RespawnLobby");
-        player = GameObject.Find("Player");
-        player.transform.position = respawn.transform.position;
-        Player.instance.ActualHealth = Player.instance.MaxHealth;
-        barraDeVida.UpdateHealthBar(MaxHealth, ActualHealth);
+        Player.instance.backToLobby();
     }
-
 }

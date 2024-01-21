@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private BarraDeVida barraDeVida;
+    [SerializeField] public BarraDeVida barraDeVida;
     public float MaxHealth = 500f;
     public float ActualHealth;
     public static Player instance;
@@ -77,5 +77,13 @@ public class Player : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.5f);
         SceneManager.LoadScene(5);
         animator.SetBool("dead", false);
+        gameObject.SetActive(false);
+    }
+    public void backToLobby()
+    {
+        gameObject.transform.position = new Vector3(0.6f, 0.03f, -0.04075508f);
+        gameObject.SetActive(true);
+        ActualHealth = MaxHealth;
+        barraDeVida.UpdateHealthBar(MaxHealth, ActualHealth);
     }
 }

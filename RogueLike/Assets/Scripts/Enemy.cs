@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Enemy : MonoBehaviour
     public float projectileSpeed = 5f; // Velocidad del proyectil
     private float shootCooldown = 1f; // Tiempo entre disparos
     private float timeSinceLastShot = 0f;
+    public Animator animator;
     protected bool alreadyHit = false;
 
     void Start()
@@ -38,10 +40,7 @@ public class Enemy : MonoBehaviour
 
             if (vida <= 0)
             {
-                GameManager.instance.setCoins(Random.Range(10, 20));
-                GameManager.instance.setEnemies();
-                GameManager.instance.numeroEnemigos--;
-                Destroy(gameObject);
+                muerte();
             }
         }
         if (other.CompareTag("Mele"))
@@ -51,13 +50,18 @@ public class Enemy : MonoBehaviour
 
             if (vida <= 0)
             {
-                GameManager.instance.setCoins(Random.Range(10, 20));
-                GameManager.instance.numeroEnemigos--;
-                Destroy(gameObject);
+                muerte();
             }
         }
     }
-
+    void muerte()
+    {
+        GameManager.instance.setCoins(Random.Range(2, 20));
+        GameManager.instance.setEnemies();
+        GameManager.instance.numeroEnemigos--;
+        animator.SetBool("dead", true);
+        Destroy(gameObject);
+    }
     protected void TurretEnemy()
     {
         timeSinceLastShot += Time.deltaTime;
@@ -71,7 +75,7 @@ public class Enemy : MonoBehaviour
 
     void Shoot()
     {
-        if (projectilePrefab != null && shootPoint != null)
+        if (projectilePrefab != null && shootPoint != null) 
         {
             // Obtén la posición actual del jugador
             Vector2 playerPosition = PlayerPosition();

@@ -25,7 +25,7 @@ public class PauseMenu : MonoBehaviour
         else Destroy(gameObject);
     }
     private void Start()
-    {
+    {        
         _inputs.MainPlayer.Pausa.performed += PauseActive;
     }
     public void clickButton(int n)
@@ -44,6 +44,6 @@ public class PauseMenu : MonoBehaviour
     public void PauseActive(InputAction.CallbackContext obj)
     {
         Time.timeScale = 0f;
-        pauseMenu.SetActive(!pauseMenu.activeSelf);    
+        pauseMenu.SetActive(!pauseMenu.activeSelf);
     }
 }

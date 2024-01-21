@@ -16,10 +16,12 @@ public class EndGame : MonoBehaviour
     }
     public void clickButton(int n)
     {
-        GameManager.instance.chooseScene(n);
-        if(!(SceneManager.GetActiveScene().name == "EndGame"))
+        if(n != -1)
         {
-            GameManager.instance.Restart();
+            if(n == 1) GameManager.instance.Restart();
+            GameManager.instance.chooseScene(1);
+            GameManager.instance.tpPLayerLobby();
         }
+        GameManager.instance.chooseScene(n);
     }
 }

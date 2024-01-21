@@ -72,19 +72,18 @@ public class Room : MonoBehaviour
     }
     public void SetEnemies()
     {
-        int run = 2;
+        int run = GameManager.instance.run;
 
         switch (run)
         {
             case 1:              
-                setActive(getRandom(random(1, 3)));
+                setActive(getRandom(random(1, 1)));
                 break;
             case 2:
-
-                setActive(getRandom(random(1, 4)));
+                setActive(getRandom(random(1, 1)));
                 break;
             default:
-                setActive(getRandom(random(1, 5)));
+                setActive(getRandom(random(1, 1)));
                 break;
         }
     }
@@ -116,7 +115,6 @@ public class Room : MonoBehaviour
     int random(int a, int b)
     {
         int random = Random.Range(a, b);
-        Debug.Log(random);  
         GameManager.instance.numeroEnemigos += random;
         return random;
     }
