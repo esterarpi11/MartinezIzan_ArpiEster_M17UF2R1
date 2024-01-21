@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour
     public Arma arma;
     public float velocidadRotacionArma = 5f;
     SpriteRenderer spriteRenderer;
+    private GameObject meleCollider;
 
     // Variables para ajustar la posición relativa del arma
     public float offsetX = 1f;
@@ -17,20 +18,24 @@ public class Weapon : MonoBehaviour
 
     // Nuevo campo para almacenar el transform del punto de inicio del disparo
     public Transform inicioDeDisparo;
-    public Transform rotation; 
+    private Transform rotation; 
     public GameInput _inputs;
 
     private void Awake()
     {
         _inputs = new GameInput();
         _inputs.MainPlayer.Enable();
+        
     }
 
     private void Start()
     {
+        rotation = gameObject.transform;
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = arma.icon; 
         _inputs.MainPlayer.Disparar.performed += DispararProyectil;
+        meleCollider = GameObject.Find("MeleColaider");
+        meleCollider.SetActive(false);
 
     }
     void Update()
@@ -51,8 +56,22 @@ public class Weapon : MonoBehaviour
         // Ajustar la posición del arma relativa al jugador
         transform.position = new Vector3(transform.parent.position.x + offsetX, transform.parent.position.y + offsetY, transform.position.z);
 
-        if (rotation.rotation.z > 90 || rotation.rotation.z < -90) spriteRenderer.sprite = arma.iconReverse;
-        else spriteRenderer.sprite = arma.icon;
+        
+        if (arma != null)
+        {
+            if (arma.isMeele == false)
+            {
+                meleCollider.SetActive(false);
+            }
+            else
+            {
+                meleCollider.SetActive(true);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("El objeto 'arma' es nulo.");
+        }
     }
 
     void DispararProyectil(InputAction.CallbackContext obj)
