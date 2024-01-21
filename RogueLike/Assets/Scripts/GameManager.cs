@@ -17,9 +17,6 @@ public class GameManager : MonoBehaviour
     GameObject spawn;
     //public Text MonedasText;
 
-    [SerializeField] GameObject buttons;
-    [SerializeField] GameObject tutorial;
-
     private void Awake()
     {
         if (instance == null)
@@ -33,13 +30,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         inventario = Inventario.instance;
-        spawn = GameObject.Find("Spawn");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        spawn = GameObject.Find("Spawn");
+        player = GameObject.Find("Player");
+        spawn.transform.position = player.transform.position;
     }
     public bool openTienda()
     {
@@ -100,10 +98,5 @@ public class GameManager : MonoBehaviour
         {
             Application.Quit();
         }
-    }
-    public void DisplayTutorial()
-    {
-        buttons.SetActive(!buttons.activeSelf);
-        tutorial.SetActive(!tutorial.activeSelf);
     }
 }
