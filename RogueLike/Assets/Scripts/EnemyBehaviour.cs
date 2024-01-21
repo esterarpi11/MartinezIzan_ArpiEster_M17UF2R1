@@ -12,7 +12,7 @@ public class EnemyFollower : Enemy
     {
         // Buscar el objeto con el tag "Player" al inicio del juego
         jugador = GameObject.FindGameObjectWithTag("Player").transform;
- 
+
         if (jugador == null)
         {
             Debug.LogError("No se encontró el objeto con el tag 'Player'.");
@@ -22,7 +22,7 @@ public class EnemyFollower : Enemy
     void Update()
     {
         alreadyHit = false; // Reiniciar la variable en cada frame
-        if (jugador != null)
+        if (jugador != null && isTurret == false)
         {
             // Calcular la dirección hacia el jugador
             Vector3 direccion = jugador.position - transform.position;
@@ -32,6 +32,10 @@ public class EnemyFollower : Enemy
 
             // Mover al enemigo en la dirección del jugador
             transform.Translate(direccion * velocidad * Time.deltaTime);
+        }
+        if (isTurret)
+        {
+            TurretEnemy();
         }
 
     }

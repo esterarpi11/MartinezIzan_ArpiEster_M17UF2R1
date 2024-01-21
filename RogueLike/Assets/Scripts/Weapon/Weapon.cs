@@ -10,56 +10,67 @@ public class Weapon : MonoBehaviour
     public Arma arma;
     public float velocidadRotacionArma = 5f;
     SpriteRenderer spriteRenderer;
+    private GameObject meleCollider;
 
-    // Variables para ajustar la posici髇 relativa del arma
+    // Variables para ajustar la posici贸n relativa del arma
     public float offsetX = 1f;
     public float offsetY = 0f;
 
     // Nuevo campo para almacenar el transform del punto de inicio del disparo
     public Transform inicioDeDisparo;
-    public Transform rotation; 
+    private Transform rotation; 
     public GameInput _inputs;
 
     private void Awake()
     {
         _inputs = new GameInput();
         _inputs.MainPlayer.Enable();
-
-        if (instance == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            instance = this;
-        }
-        else Destroy(gameObject);
     }
 
     private void Start()
     {
+        rotation = gameObject.transform;
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = arma.icon; 
         _inputs.MainPlayer.Disparar.performed += DispararProyectil;
+        meleCollider = GameObject.Find("MeleColaider");
+        meleCollider.SetActive(false);
 
     }
     void Update()
     {
-        // Obtener la posici髇 del rat髇 en el mundo
+        // Obtener la posici贸n del rat贸n en el mundo
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
 
-        // Calcular la direcci髇 hacia el rat髇 desde el punto de inicio del disparo
+        // Calcular la direcci贸n hacia el rat贸n desde el punto de inicio del disparo
         Vector3 direccion = mousePos - inicioDeDisparo.position;
 
-        // Calcular el 醤gulo en radianes y convertirlo a grados
+        // Calcular el 谩ngulo en radianes y convertirlo a grados
         float angle = Mathf.Atan2(direccion.y, direccion.x) * Mathf.Rad2Deg;
 
-        // Rotar el arma hacia el rat髇
+        // Rotar el arma hacia el rat贸n
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.forward), velocidadRotacionArma * Time.deltaTime);
 
-        // Ajustar la posici髇 del arma relativa al jugador
+        // Ajustar la posici贸n del arma relativa al jugador
         transform.position = new Vector3(transform.parent.position.x + offsetX, transform.parent.position.y + offsetY, transform.position.z);
 
-        if (rotation.rotation.z > 90 || rotation.rotation.z < -90) spriteRenderer.sprite = arma.iconReverse;
-        else spriteRenderer.sprite = arma.icon;
+        
+        if (arma != null)
+        {
+            if (arma.isMeele == false)
+            {
+                meleCollider.SetActive(false);
+            }
+            else
+            {
+                meleCollider.SetActive(true);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("El objeto 'arma' es nulo.");
+        }
     }
 
     void DispararProyectil(InputAction.CallbackContext obj)
@@ -72,30 +83,30 @@ public class Weapon : MonoBehaviour
                 // Instancia el proyectil en el punto de inicio
                 GameObject proyectil = Instantiate(arma.proyectil, inicioDeDisparo.position,rotacionArma);
 
-                // Aplica fuerza al proyectil en la direcci髇 calculada con dispersi髇
+                // Aplica fuerza al proyectil en la direcci贸n calculada con dispersi贸n
                 Rigidbody2D rbProyectil = proyectil.GetComponent<Rigidbody2D>();
                 Vector3 direccion = Camera.main.ScreenToWorldPoint(Input.mousePosition) - inicioDeDisparo.position;
                 direccion.z = 0f;
 
                 if (arma.numProyectiles > 1)
                 {
-                    // Calcula un 醤gulo de dispersi髇 aleatorio en el rango de 120 grados
+                    // Calcula un 谩ngulo de dispersi贸n aleatorio en el rango de 120 grados
                     float dispersionAngle = Random.Range(-30f, 30f);
 
-                    // Rota la direcci髇 original seg鷑 el 醤gulo de dispersi髇
+                    // Rota la direcci贸n original seg煤n el 谩ngulo de dispersi贸n
                     Quaternion dispersionRotation = Quaternion.AngleAxis(dispersionAngle, Vector3.forward);
                     Vector3 dispersedDirection = dispersionRotation * direccion.normalized;
 
-                    // Aplica fuerza al proyectil en la direcci髇 dispersa
+                    // Aplica fuerza al proyectil en la direcci贸n dispersa
                     rbProyectil.velocity = dispersedDirection * arma.velocidadProyectil;
                 }
                 else
                 {
-                    // Si solo hay un proyectil, aplica la fuerza en la direcci髇 original
+                    // Si solo hay un proyectil, aplica la fuerza en la direcci贸n original
                     rbProyectil.velocity = direccion.normalized * arma.velocidadProyectil;
                 }
 
-                // Destruye el proyectil despu閟 de un tiempo
+                // Destruye el proyectil despu茅s de un tiempo
                 Destroy(proyectil, 2f);
             }
         }

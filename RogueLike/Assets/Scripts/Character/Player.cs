@@ -48,4 +48,18 @@ public class Player : Character
             }
         }
     }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("EnemyBullet"))
+        {
+            ActualHealth -= 50;
+            barraDeVida.UpdateHealthBar(MaxHealth, ActualHealth);
+            Destroy(other.gameObject);
+
+            if (ActualHealth <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
 }
