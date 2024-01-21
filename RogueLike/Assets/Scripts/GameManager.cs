@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -9,14 +10,14 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     Inventario inventario;
     public int run = 1;
-    private int coins = 500;
+    private int coins = 0;
     public GameObject enterDungeon;
     public GameObject pauseMenu;
     bool menuAbierto = false;
     public GameObject player;
     GameObject spawn;
     public int numeroEnemigos;
-    //public Text MonedasText;
+    public Text MonedasText;
     public AudioSource endMazmorra;
 
     private void Awake()
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(wait());
             }
         }
+        if(MonedasText != null) MonedasText.text = coins.ToString() + " oro";
     }
     public bool openTienda()
     {
@@ -75,7 +77,6 @@ public class GameManager : MonoBehaviour
     public void setCoins(int n)
     {
         coins += n;
-        //MonedasText.Text = Monedas.ToString() + " oro";
         PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins") + n);
     }
     public void EnterDungeon()
@@ -115,6 +116,11 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1.5f);
         SceneManager.LoadScene(1);
-
     }
+    public void Restart()
+    {
+        PlayerPrefs.SetInt("coins", 0);
+        PlayerPrefs.SetInt("enemiesKilled", 0);
+    }
+
 }

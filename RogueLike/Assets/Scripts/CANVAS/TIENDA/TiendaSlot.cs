@@ -4,6 +4,7 @@ public class TiendaSlot : MonoBehaviour
 {
     Inventario inventario;
     GameManager gameManager;
+    public AudioSource audio;
     private void Start()
     {
         inventario = Inventario.instance;
@@ -13,12 +14,8 @@ public class TiendaSlot : MonoBehaviour
     {
         if (gameManager.buyWeapon(arma))
         {
+            audio.Play();
             inventario.Add(arma);
-            Debug.Log("comprando");
-        }
-        else
-        {
-            Debug.Log("no pudo ser");
         }
     }
 }

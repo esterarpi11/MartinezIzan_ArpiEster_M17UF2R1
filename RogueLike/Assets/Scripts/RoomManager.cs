@@ -8,6 +8,8 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private int maxRooms = 15;
     [SerializeField] private int minRooms = 10;
 
+    public GameObject cargando;
+
     int roomWitdh = 20;
     int roomHeight = 12;
 
@@ -49,6 +51,7 @@ public class RoomManager : MonoBehaviour
         else if (!generationComplete)
         {
             generationComplete = true;
+            cargando.SetActive(false);
         }
 
     }

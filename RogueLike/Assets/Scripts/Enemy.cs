@@ -38,6 +38,8 @@ public class Enemy : MonoBehaviour
 
             if (vida <= 0)
             {
+                GameManager.instance.setCoins(Random.Range(4, 8));
+                GameManager.instance.numeroEnemigos--;
                 Destroy(gameObject);
             }
         }
@@ -48,6 +50,8 @@ public class Enemy : MonoBehaviour
 
             if (vida <= 0)
             {
+                GameManager.instance.setCoins(Random.Range(4, 8));
+                GameManager.instance.numeroEnemigos--;
                 Destroy(gameObject);
             }
         }

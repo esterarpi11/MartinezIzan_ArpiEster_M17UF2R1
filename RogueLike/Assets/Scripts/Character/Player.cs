@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : Character
@@ -9,6 +10,8 @@ public class Player : Character
     public float MaxHealth = 500f;
     private float ActualHealth;
     public static Player instance;
+    private Animator animator;
+    public AudioSource audioMuerte;
 
     private void Awake()
     {
@@ -23,7 +26,8 @@ public class Player : Character
     void Start()
     {
         ActualHealth = MaxHealth;
-        barraDeVida.UpdateHealthBar(MaxHealth, ActualHealth);
+        barraDeVida.UpdateHealthBar(MaxHealth, ActualHealth); 
+        animator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -44,7 +48,7 @@ public class Player : Character
 
             if (ActualHealth <= 0)
             {
-                Destroy(gameObject);
+                muerte();
             }
         }
     }
@@ -58,8 +62,21 @@ public class Player : Character
 
             if (ActualHealth <= 0)
             {
-                Destroy(gameObject);
+                muerte();
             }
         }
+    }
+    void muerte()
+    {
+        audioMuerte.Play();
+        animator.SetBool("dead", true);
+        StartCoroutine(wait());
+        GameManager.instance.Restart();
+    }
+    IEnumerator wait()
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+        Destroy(gameObject);
+        SceneManager.LoadScene(5);
     }
 }

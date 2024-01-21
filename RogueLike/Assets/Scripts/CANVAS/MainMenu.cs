@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour
                 mainMenu.SetActive(!mainMenu.activeSelf);
                 break;
             default:
-                GameManager.instance.chooseScene(n);
+                SceneManager.LoadScene(1);
                 break;
         }
     }
