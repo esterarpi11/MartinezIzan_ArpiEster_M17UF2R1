@@ -30,8 +30,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         inventario = Inventario.instance;
-        string scene = SceneManager.GetActiveScene().name;
-        MusicManager.instance.PlayMusic(scene);
     }
 
     // Update is called once per frame
