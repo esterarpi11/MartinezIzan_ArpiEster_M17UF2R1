@@ -35,9 +35,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        spawn = GameObject.Find("Spawn");
-        player = GameObject.Find("Player");
-        spawn.transform.position = player.transform.position;
+        if(SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            spawn = GameObject.Find("Spawn");
+            player = GameObject.Find("Player");
+            spawn.transform.position = player.transform.position;
+        }
     }
     public bool openTienda()
     {

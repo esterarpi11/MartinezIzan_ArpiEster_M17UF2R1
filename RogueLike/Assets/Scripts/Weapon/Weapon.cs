@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class Weapon : MonoBehaviour
 {
-    public static Weapon Instance;
+    public static Weapon instance;
     public Arma arma;
     public float velocidadRotacionArma = 5f;
     SpriteRenderer spriteRenderer;
@@ -24,6 +24,13 @@ public class Weapon : MonoBehaviour
     {
         _inputs = new GameInput();
         _inputs.MainPlayer.Enable();
+
+        if (instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else Destroy(gameObject);
     }
 
     private void Start()
