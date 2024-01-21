@@ -5890,6 +5890,8 @@ MonoBehaviour:
   enterDungeon: {fileID: 199914213}
   pauseMenu: {fileID: 1298029233}
   player: {fileID: 713700262}
+  numeroEnemigos: 0
+  endMazmorra: {fileID: 978272659}
 --- !u!4 &1302260440
 Transform:
   m_ObjectHideFlags: 0
