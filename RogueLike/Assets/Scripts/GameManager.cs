@@ -145,6 +145,7 @@ public class GameManager : MonoBehaviour
         player = GameObject.Find("Player");
         player.transform.position = respawn.transform.position;
         Player.instance.ActualHealth = Player.instance.MaxHealth;
+        barraDeVida.UpdateHealthBar(MaxHealth, ActualHealth);
     }
 
 }
