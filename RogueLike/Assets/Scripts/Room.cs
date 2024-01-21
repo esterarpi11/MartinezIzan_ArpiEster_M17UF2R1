@@ -78,14 +78,15 @@ public class Room : MonoBehaviour
 
         switch (run)
         {
-            case 1:
-                setActive(getRandom(Random.Range(1, 3)));
+            case 1:              
+                setActive(getRandom(random(1, 3)));
                 break;
             case 2:
-                setActive(getRandom(Random.Range(3, 5)));
+
+                setActive(getRandom(random(3, 5)));
                 break;
             default:
-                setActive(getRandom(Random.Range(5, 7)));
+                setActive(getRandom(random(5, 7)));
                 break;
         }
     }
@@ -113,5 +114,11 @@ public class Room : MonoBehaviour
             numerosDisponibles.RemoveAt(indiceRandom);
         }
         return numerosRandom;
+    }
+    int random(int a, int b)
+    {
+        int random = Random.Range(a, b);
+        gameManager.numeroEnemigos += random;
+        return random;
     }
 }

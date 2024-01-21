@@ -5,7 +5,12 @@ public class InventarioSlot : MonoBehaviour
 {
     public Image icon;
     Arma arma;
+    Weapon weapon;
 
+    private void Start()
+    {
+        weapon = Weapon.instance;
+    }
     public void AddArma(Arma newArma)
     {
         arma = newArma;
@@ -17,7 +22,7 @@ public class InventarioSlot : MonoBehaviour
     {
         if(arma != null)
         {
-            arma.Use();  
+            weapon.arma = arma.Use();
         }
     }
 }

@@ -14,8 +14,8 @@ public class Arma : ScriptableObject
     Weapon arma;
     public bool isMeele = false;
 
-    public virtual void Use()
+    public virtual Arma Use()
     {
-        arma.arma = this;
+        return this;
     }
 }

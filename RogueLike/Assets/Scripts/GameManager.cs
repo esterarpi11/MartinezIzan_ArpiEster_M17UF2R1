@@ -15,10 +15,10 @@ public class GameManager : MonoBehaviour
     bool menuAbierto = false;
     public GameObject player;
     GameObject spawn;
+    public int numeroEnemigos;
     //public Text MonedasText;
 
-    [SerializeField] GameObject buttons;
-    [SerializeField] GameObject tutorial;
+    public AudioSource endMazmorra;
 
     private void Awake()
     {
@@ -33,13 +33,23 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         inventario = Inventario.instance;
-        spawn = GameObject.Find("Spawn");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            spawn = GameObject.Find("Spawn");
+            player = GameObject.Find("Player");
+            spawn.transform.position = player.transform.position;
+
+            if(numeroEnemigos == 0)
+            {
+                endMazmorra.Play();
+                StartCoroutine(wait());
+            }
+        }    
     }
     public bool openTienda()
     {
@@ -101,9 +111,10 @@ public class GameManager : MonoBehaviour
             Application.Quit();
         }
     }
-    public void DisplayTutorial()
+    IEnumerator wait()
     {
-        buttons.SetActive(!buttons.activeSelf);
-        tutorial.SetActive(!tutorial.activeSelf);
+        yield return new WaitForSecondsRealtime(1.5f);
+        SceneManager.LoadScene(1);
+
     }
 }
