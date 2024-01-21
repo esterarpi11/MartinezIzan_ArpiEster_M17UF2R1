@@ -25,13 +25,11 @@ public class Room : MonoBehaviour
     [SerializeField] GameObject enemy5;
     [SerializeField] GameObject enemy6;
 
-    GameManager gameManager;
 
     public Vector2Int RoomIndex { get; set; }
 
     private void Start()
     {
-        gameManager = GameManager.instance;
     }
 
     public void OpenDoor(Vector2Int direction)
@@ -118,7 +116,7 @@ public class Room : MonoBehaviour
     int random(int a, int b)
     {
         int random = Random.Range(a, b);
-        gameManager.numeroEnemigos += random;
+        GameManager.instance.numeroEnemigos += random;
         return random;
     }
 }

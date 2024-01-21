@@ -25,13 +25,24 @@ public class Weapon : MonoBehaviour
     {
         _inputs = new GameInput();
         _inputs.MainPlayer.Enable();
+
+        if (instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else Destroy(gameObject);
     }
 
+    public void setArma(Arma newArma)
+    {
+        arma = newArma;
+        spriteRenderer.sprite = arma.icon;
+    }
     private void Start()
     {
         rotation = gameObject.transform;
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = arma.icon; 
         _inputs.MainPlayer.Disparar.performed += DispararProyectil;
         meleCollider = GameObject.Find("MeleColaider");
         meleCollider.SetActive(false);
@@ -66,10 +77,6 @@ public class Weapon : MonoBehaviour
             {
                 meleCollider.SetActive(true);
             }
-        }
-        else
-        {
-            Debug.LogWarning("El objeto 'arma' es nulo.");
         }
     }
 

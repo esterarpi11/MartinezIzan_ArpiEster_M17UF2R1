@@ -5,7 +5,6 @@ public class Arma : ScriptableObject
 {
     new public string name = "arma";
     public Sprite icon = null;
-    public Sprite iconReverse = null;
     public float damage = 0f;
     public int price = 0;
     public int numProyectiles = 1;
@@ -16,6 +15,7 @@ public class Arma : ScriptableObject
 
     public virtual Arma Use()
     {
+        Debug.Log("usando");
         return this;
     }
 }
