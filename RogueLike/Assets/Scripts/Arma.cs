@@ -15,7 +15,6 @@ public class Arma : ScriptableObject
 
     public virtual Arma Use()
     {
-        Debug.Log("usando");
         return this;
     }
 }

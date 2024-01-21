@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public int numeroEnemigos;
     public Text MonedasText;
     public AudioSource endMazmorra;
+    public bool generationComplete = false;
 
     private void Awake()
     {
@@ -44,10 +45,18 @@ public class GameManager : MonoBehaviour
             player = GameObject.Find("Player");
             spawn.transform.position = player.transform.position;
 
-            if (numeroEnemigos == 0)
+            if (generationComplete && numeroEnemigos == 0)
             {
-                endMazmorra.Play();
-                StartCoroutine(wait());
+                run++;
+                if (run < 4)
+                {
+                    endMazmorra.Play();
+                    StartCoroutine(wait());
+                }
+                else
+                {
+                    SceneManager.LoadScene(6);
+                }
             }
         }
         if(MonedasText != null) MonedasText.text = coins.ToString() + " oro";
@@ -61,13 +70,9 @@ public class GameManager : MonoBehaviour
     {
         if (!inventario.items.Contains(arma) && arma.price <= coins)
         {
-            Debug.Log(!inventario.items.Contains(arma));
-            Debug.Log(arma.price + " " + coins);
             coins -= arma.price;
             return true;
         }
-        Debug.Log(!inventario.items.Contains(arma));
-        Debug.Log(arma.price + " " + coins);
         return false;
     }
     public void setEnemies()
@@ -87,13 +92,23 @@ public class GameManager : MonoBehaviour
     public void ChooseEnter(int n)
     {
         Time.timeScale = 1f;
+        enterDungeon.SetActive(false);
+
         if (n >= 1)
         {
-            SceneManager.LoadScene(2);
-        }
-        else
-        {
-            enterDungeon.SetActive(false);
+
+            switch (run)
+            {
+                case 1:
+                    SceneManager.LoadScene(2);
+                    break;
+                case 2:
+                    SceneManager.LoadScene(3);
+                    break;
+                case 3:
+                    SceneManager.LoadScene(4);
+                    break;
+            }
         }
     }
     public bool MenuAbierto()
@@ -116,11 +131,20 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1.5f);
         SceneManager.LoadScene(1);
+        tpPLayerLobby();
     }
     public void Restart()
     {
         PlayerPrefs.SetInt("coins", 0);
         PlayerPrefs.SetInt("enemiesKilled", 0);
+        Inventario.instance.items.Clear();
+    }
+    public void tpPLayerLobby()
+    {
+        GameObject respawn = GameObject.Find("RespawnLobby");
+        player = GameObject.Find("Player");
+        player.transform.position = respawn.transform.position;
+        Player.instance.ActualHealth = Player.instance.MaxHealth;
     }
 
 }

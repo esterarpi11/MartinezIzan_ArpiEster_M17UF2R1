@@ -27,7 +27,24 @@ public class RoomManager : MonoBehaviour
     {
         roomGrid = new int[gridSizeX, gridSizeY];
         roomQueue = new Queue<Vector2Int>();
-         
+
+        int run = GameManager.instance.run;
+        switch (run)
+        {
+            case 1:
+                maxRooms = 7;
+                minRooms = 3;
+                break;
+            case 2:
+                maxRooms = 9;
+                minRooms = 5;
+                break;
+            case 3:
+                maxRooms = 11;
+                minRooms = 7;
+                break;
+        }
+
         Vector2Int initialRoomIndex = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
         StartRoomGenerationFromRoom(initialRoomIndex);
     }
@@ -52,6 +69,7 @@ public class RoomManager : MonoBehaviour
         {
             generationComplete = true;
             cargando.SetActive(false);
+            GameManager.instance.generationComplete = true;
         }
 
     }

@@ -38,7 +38,8 @@ public class Enemy : MonoBehaviour
 
             if (vida <= 0)
             {
-                GameManager.instance.setCoins(Random.Range(4, 8));
+                GameManager.instance.setCoins(Random.Range(10, 20));
+                GameManager.instance.setEnemies();
                 GameManager.instance.numeroEnemigos--;
                 Destroy(gameObject);
             }
@@ -50,7 +51,7 @@ public class Enemy : MonoBehaviour
 
             if (vida <= 0)
             {
-                GameManager.instance.setCoins(Random.Range(4, 8));
+                GameManager.instance.setCoins(Random.Range(10, 20));
                 GameManager.instance.numeroEnemigos--;
                 Destroy(gameObject);
             }
@@ -93,14 +94,8 @@ public class Enemy : MonoBehaviour
                 // Destruir la bala después de 5 segundos
                 Destroy(projectile, 5f);
             }
-            else
-            {
-                // El jugador está fuera del rango, no se dispara
-                Debug.Log("El jugador está fuera del rango de disparo.");
-            }
         }
     }
-
     Vector2 PlayerPosition()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");

@@ -12,11 +12,6 @@ public class EnemyFollower : Enemy
     {
         // Buscar el objeto con el tag "Player" al inicio del juego
         jugador = GameObject.Find("Player").transform;
-
-        if (jugador == null)
-        {
-            Debug.LogError("No se encontró el objeto con el tag 'Player'.");
-        }
     }
 
     void Update()

@@ -81,10 +81,10 @@ public class Room : MonoBehaviour
                 break;
             case 2:
 
-                setActive(getRandom(random(3, 5)));
+                setActive(getRandom(random(1, 4)));
                 break;
             default:
-                setActive(getRandom(random(5, 7)));
+                setActive(getRandom(random(1, 5)));
                 break;
         }
     }
@@ -116,6 +116,7 @@ public class Room : MonoBehaviour
     int random(int a, int b)
     {
         int random = Random.Range(a, b);
+        Debug.Log(random);  
         GameManager.instance.numeroEnemigos += random;
         return random;
     }

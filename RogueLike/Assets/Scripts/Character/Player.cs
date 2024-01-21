@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Player : Character
+public class Player : MonoBehaviour
 {
     [SerializeField] private BarraDeVida barraDeVida;
     public float MaxHealth = 500f;
-    private float ActualHealth;
+    public float ActualHealth;
     public static Player instance;
     private Animator animator;
     public AudioSource audioMuerte;
@@ -71,12 +71,11 @@ public class Player : Character
         audioMuerte.Play();
         animator.SetBool("dead", true);
         StartCoroutine(wait());
-        GameManager.instance.Restart();
     }
     IEnumerator wait()
     {
         yield return new WaitForSecondsRealtime(1.5f);
-        Destroy(gameObject);
         SceneManager.LoadScene(5);
+        animator.SetBool("dead", false);
     }
 }
