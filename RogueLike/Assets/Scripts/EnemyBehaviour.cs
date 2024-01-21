@@ -11,7 +11,7 @@ public class EnemyFollower : Enemy
     void Start()
     {
         // Buscar el objeto con el tag "Player" al inicio del juego
-        jugador = GameObject.FindGameObjectWithTag("Player").transform;
+        jugador = GameObject.Find("Player").transform;
 
         if (jugador == null)
         {

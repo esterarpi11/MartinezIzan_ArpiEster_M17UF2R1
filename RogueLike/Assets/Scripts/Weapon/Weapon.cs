@@ -69,13 +69,13 @@ public class Weapon : MonoBehaviour
         
         if (arma != null)
         {
-            if (arma.isMeele == false)
+            if (arma.isMeele == true)
             {
-                meleCollider.SetActive(false);
+                meleCollider.SetActive(true);
             }
             else
             {
-                meleCollider.SetActive(true);
+                meleCollider.SetActive(false);
             }
         }
     }

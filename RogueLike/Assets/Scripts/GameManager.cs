@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     Inventario inventario;
     public int run = 1;
-    public int coins = 0;
+    public int coins = 500;
     public GameObject enterDungeon;
     public GameObject pauseMenu;
     bool menuAbierto = false;
