@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -156,9 +154,12 @@ public class GameManager : MonoBehaviour
         coins = 0;
         PlayerPrefs.SetInt("enemiesKilled", 0);
         Inventario.instance.items.Clear();
+        run = 1;
     }
     public void tpPLayerLobby()
     {
         Player.instance.backToLobby();
+        run = 1;
+        coins = 0;
     }
 }

@@ -43,7 +43,8 @@ public class PauseMenu : MonoBehaviour
     }
     public void PauseActive(InputAction.CallbackContext obj)
     {
-        Time.timeScale = 0f;
+        if(Time.timeScale == 1f) Time.timeScale = 0f;
+        else Time.timeScale = 1f;
         pauseMenu.SetActive(!pauseMenu.activeSelf);
     }
 }
