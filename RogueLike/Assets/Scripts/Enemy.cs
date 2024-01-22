@@ -1,110 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class Enemy : MonoBehaviour
-{
-    [SerializeField] private BarraDeVida barraDeVida;
-    public float velocidad = 2f;  // Velocidad de persecución del enemigo
-    public float statVida = 200;
-    public bool isTurret = false;
-    protected float vida;
-    public GameObject projectilePrefab; // Prefab del proyectil a disparar
-    public Transform shootPoint; // Punto de origen del disparo
-    public float projectileSpeed = 5f; // Velocidad del proyectil
-    private float shootCooldown = 1f; // Tiempo entre disparos
-    private float timeSinceLastShot = 0f;
-    public Animator animator;
-    protected bool alreadyHit = false;
+public class Enemy : EnemyBehaviour
+{    
+    private Transform jugador;// Referencia al transform del jugador
 
+    private void Awake()
+    {
+        vida = statVida;
+    }
     void Start()
     {
-        barraDeVida.UpdateHealthBar(statVida, vida);
-        shootPoint = gameObject.transform;
+        // Buscar el objeto con el tag "Player" al inicio del juego
+        jugador = GameObject.Find("Player").transform;
+        animator = GetComponent<Animator>();
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void Update()
     {
-        if (other.CompareTag("Bullet") && !alreadyHit)
+        alreadyHit = false; // Reiniciar la variable en cada frame
+        if (jugador != null && isTurret == false)
         {
-            alreadyHit = true;
-            vida -= 25;
-            Destroy(other.gameObject);
-            barraDeVida.UpdateHealthBar(statVida, vida);
+            // Calcular la dirección hacia el jugador
+            Vector3 direccion = jugador.position - transform.position;
 
-            if (vida <= 0)
-            {
-                muerte();
-            }
+            // Normalizar la dirección para que el enemigo se mueva a una velocidad constante
+            direccion.Normalize();
+
+            // Mover al enemigo en la dirección del jugador
+            transform.Translate(direccion * velocidad * Time.deltaTime);
         }
-        if (other.CompareTag("Mele"))
+        if (isTurret)
         {
-            vida -= 25;
-            barraDeVida.UpdateHealthBar(statVida, vida);
-
-            if (vida <= 0)
-            {
-                muerte();
-            }
+            TurretEnemy();
         }
-    }
-    void muerte()
-    {
-        GameManager.instance.setCoins(Random.Range(2, 20));
-        GameManager.instance.setEnemies();
-        GameManager.instance.numeroEnemigos--;
-        animator.SetBool("dead", true);
-        Destroy(gameObject);
-    }
-    protected void TurretEnemy()
-    {
-        timeSinceLastShot += Time.deltaTime;
 
-        if (timeSinceLastShot >= shootCooldown)
-        {
-            Shoot();
-            timeSinceLastShot = 0f;
-        }
     }
 
-    void Shoot()
-    {
-        if (projectilePrefab != null && shootPoint != null) 
-        {
-            // Obtén la posición actual del jugador
-            Vector2 playerPosition = PlayerPosition();
-
-            // Calcula la distancia entre el enemigo y el jugador
-            float distanceToPlayer = Vector2.Distance(transform.position, playerPosition);
-
-            // Establece un rango máximo para disparar
-            float maxShootRange = 10f;  // Ajusta el valor según tu necesidad
-
-            // Verifica si el jugador está dentro del rango antes de disparar
-            if (distanceToPlayer <= maxShootRange)
-            {
-                // El jugador está dentro del rango, procede a disparar
-                Vector2 direction = (playerPosition - (Vector2)transform.position).normalized;
-
-                GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
-                projectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
-
-                // Destruir la bala después de 5 segundos
-                Destroy(projectile, 5f);
-            }
-        }
-    }
-    Vector2 PlayerPosition()
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            return player.transform.position;
-        }
-        else
-        {
-            return Vector2.zero;
-        }
-    }
+    
 }
