@@ -28,10 +28,6 @@ public class Room : MonoBehaviour
 
     public Vector2Int RoomIndex { get; set; }
 
-    private void Start()
-    {
-    }
-
     public void OpenDoor(Vector2Int direction)
     {
         if(direction == Vector2Int.up)
@@ -77,13 +73,13 @@ public class Room : MonoBehaviour
         switch (run)
         {
             case 1:              
-                setActive(getRandom(random(1, 1)));
+                setActive(getRandom(random(1, 3)));
                 break;
             case 2:
-                setActive(getRandom(random(1, 1)));
+                setActive(getRandom(random(3, 5)));
                 break;
             default:
-                setActive(getRandom(random(1, 1)));
+                setActive(getRandom(random(5, 7)));
                 break;
         }
     }

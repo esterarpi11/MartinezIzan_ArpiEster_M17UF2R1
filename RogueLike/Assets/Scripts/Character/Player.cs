@@ -30,11 +30,6 @@ public class Player : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     void OnCollisionStay2D(Collision2D collision)
     {

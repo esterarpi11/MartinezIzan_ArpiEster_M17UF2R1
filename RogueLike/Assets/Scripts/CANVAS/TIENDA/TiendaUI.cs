@@ -14,12 +14,6 @@ public class TiendaUI : CanvasUI
         _inputs.MainPlayer.Tienda.performed += CanvasActive;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public override void CanvasActive(InputAction.CallbackContext obj)
     {
         if(gameManager.openTienda()) canvasUI.SetActive(!canvasUI.activeSelf);

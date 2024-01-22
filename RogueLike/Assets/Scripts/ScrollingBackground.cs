@@ -7,11 +7,6 @@ public class ScrollingBackground : MonoBehaviour
 {
     [SerializeField] private RawImage _img;
     [SerializeField] private float _x, _y;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()

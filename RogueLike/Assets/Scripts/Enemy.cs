@@ -24,11 +24,6 @@ public class Enemy : MonoBehaviour
         shootPoint = gameObject.transform;
     }
 
-    void Update()
-    {
-
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Bullet") && !alreadyHit)

@@ -7,9 +7,6 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject mainMenu;
     public GameObject tutorial;
-    void Awake()
-    {
-    }
 
     public void clickButton(int n)
     {
