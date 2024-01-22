@@ -159,7 +159,5 @@ public class GameManager : MonoBehaviour
     public void tpPLayerLobby()
     {
         Player.instance.backToLobby();
-        run = 1;
-        coins = 0;
     }
 }
