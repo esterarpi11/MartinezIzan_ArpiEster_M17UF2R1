@@ -12,7 +12,6 @@ public class Enemy : EnemyBehaviour
     {
         // Buscar el objeto con el tag "Player" al inicio del juego
         jugador = GameObject.Find("Player").transform;
-        animator = GetComponent<Animator>();
     }
 
     void Update()

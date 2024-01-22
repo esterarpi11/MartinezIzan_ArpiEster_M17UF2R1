@@ -15,7 +15,6 @@ public class EnemyBehaviour : MonoBehaviour
     public float projectileSpeed = 5f; // Velocidad del proyectil
     private float shootCooldown = 1f; // Tiempo entre disparos
     private float timeSinceLastShot = 0f;
-    public Animator animator;
     protected bool alreadyHit = false;
 
     void Start()
@@ -54,7 +53,6 @@ public class EnemyBehaviour : MonoBehaviour
         GameManager.instance.setCoins(Random.Range(2, 20));
         GameManager.instance.setEnemies();
         GameManager.instance.numeroEnemigos--;
-        animator.SetBool("dead", true);
         Destroy(gameObject);
     }
     protected void TurretEnemy()

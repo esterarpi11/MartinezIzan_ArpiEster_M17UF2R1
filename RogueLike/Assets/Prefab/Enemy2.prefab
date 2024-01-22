@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 9045492995958421692}
   - component: {fileID: 4216814161181129103}
   - component: {fileID: 7846343610126253449}
-  - component: {fileID: 3971243913973676536}
+  - component: {fileID: 5867970547456975071}
   - component: {fileID: 5848949193582347968}
   - component: {fileID: 8398907542952539371}
   - component: {fileID: 4845276388822176146}
@@ -302,7 +302,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3971243913973676536
+--- !u!114 &5867970547456975071
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -311,7 +311,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6156624047418065799}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e899bdc55a3de44093530ca42315984, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f6fc0e5bfeabe348892f50b852c6df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   barraDeVida: {fileID: 817178088367474077}
